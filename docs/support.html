@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Frame Cutter - Support</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #0E0E0E; color: #E0E0E0; font-family: -apple-system, 'Inter', 'Helvetica Neue', sans-serif; line-height: 1.7; }
+.container { max-width: 720px; margin: 0 auto; padding: 24px 20px 60px; }
+.lang-switch { display: flex; justify-content: flex-end; gap: 8px; padding: 16px 0; flex-wrap: wrap; }
+.lang-btn { background: #1A1A1A; border: 1px solid #333; border-radius: 8px; padding: 6px 14px; color: #888; font-size: 13px; cursor: pointer; text-decoration: none; }
+.lang-btn.active { border-color: #CAFD00; color: #CAFD00; background: rgba(202,253,0,0.08); }
+.logo { text-align: center; padding: 32px 0 24px; }
+.logo-icon { display: inline-flex; align-items: center; justify-content: center; width: 56px; height: 56px; border-radius: 14px; background: linear-gradient(135deg, #CAFD00, #8BC34A); margin-bottom: 12px; font-size: 28px; }
+.logo h1 { font-size: 28px; font-weight: 800; color: #CAFD00; letter-spacing: 2px; }
+.logo p { font-size: 13px; color: #666; letter-spacing: 4px; margin-top: 4px; }
+.badge { display: inline-block; background: rgba(202,253,0,0.12); color: #CAFD00; font-size: 11px; padding: 4px 12px; border-radius: 20px; margin-top: 8px; }
+h2 { font-size: 20px; color: #CAFD00; margin: 36px 0 12px; padding-bottom: 8px; border-bottom: 1px solid #222; }
+h3 { font-size: 16px; color: #E0E0E0; margin: 20px 0 8px; }
+p, li { font-size: 14px; color: #BBB; margin-bottom: 8px; }
+ul { padding-left: 20px; }
+li { margin-bottom: 6px; }
+.card { background: #1A1A1A; border-radius: 12px; padding: 20px; margin: 16px 0; }
+.card-title { font-size: 14px; font-weight: 600; color: #E0E0E0; margin-bottom: 8px; }
+.faq-q { font-weight: 600; color: #E0E0E0; margin-bottom: 4px; }
+.faq-a { color: #999; margin-bottom: 16px; }
+a { color: #CAFD00; text-decoration: none; }
+a:hover { text-decoration: underline; }
+.contact-box { background: #1A1A1A; border: 1px solid #333; border-radius: 12px; padding: 24px; text-align: center; margin: 24px 0; }
+.contact-box p { color: #999; }
+.contact-box a { font-size: 16px; }
+.footer { text-align: center; padding: 32px 0; color: #444; font-size: 12px; border-top: 1px solid #1A1A1A; margin-top: 40px; }
+.section { display: none; }
+.section.active { display: block; }
+[dir="rtl"] ul { padding-left: 0; padding-right: 20px; }
+[dir="rtl"] .contact-box { direction: rtl; }
+</style>
+<script>
+function switchLang(lang) {
+  document.querySelectorAll('.section').forEach(function(el) { el.classList.remove('active'); });
+  document.querySelectorAll('.lang-btn').forEach(function(el) { el.classList.remove('active'); });
+  document.querySelectorAll('.section.' + CSS.escape(lang)).forEach(function(el) { el.classList.add('active'); });
+  var btn = document.querySelector('.lang-btn[data-lang="' + lang + '"]');
+  if (btn) btn.classList.add('active');
+  if (lang === 'ar') {
+    document.documentElement.setAttribute('dir', 'rtl');
+  } else {
+    document.documentElement.removeAttribute('dir');
+  }
+  var langMap = { 'en': 'en', 'ja': 'ja', 'zh-Hans': 'zh-Hans', 'zh-Hant': 'zh-Hant', 'ko': 'ko', 'es': 'es', 'fr': 'fr', 'de': 'de', 'pt-BR': 'pt-BR', 'hi': 'hi', 'ar': 'ar' };
+  document.documentElement.lang = langMap[lang] || 'en';
+}
+document.addEventListener('DOMContentLoaded', function() {
+  var raw = (navigator.language || navigator.userLanguage || 'en');
+  var lang = 'en';
+  if (raw === 'zh-Hans' || raw === 'zh-CN' || raw.startsWith('zh-Hans')) lang = 'zh-Hans';
+  else if (raw === 'zh-Hant' || raw === 'zh-TW' || raw === 'zh-HK' || raw.startsWith('zh-Hant')) lang = 'zh-Hant';
+  else if (raw === 'pt-BR' || raw === 'pt-br') lang = 'pt-BR';
+  else {
+    var short = raw.substring(0, 2);
+    var map = { 'ja': 'ja', 'ko': 'ko', 'es': 'es', 'fr': 'fr', 'de': 'de', 'pt': 'pt-BR', 'hi': 'hi', 'ar': 'ar', 'zh': 'zh-Hans' };
+    if (map[short]) lang = map[short];
+  }
+  switchLang(lang);
+});
+</script>
+</head>
+<body>
+
+<div class="container">
+  <div class="lang-switch">
+    <a class="lang-btn" data-lang="en" onclick="switchLang('en')">English</a>
+    <a class="lang-btn" data-lang="ja" onclick="switchLang('ja')">日本語</a>
+    <a class="lang-btn" data-lang="zh-Hans" onclick="switchLang('zh-Hans')">简体中文</a>
+    <a class="lang-btn" data-lang="zh-Hant" onclick="switchLang('zh-Hant')">繁體中文</a>
+    <a class="lang-btn" data-lang="ko" onclick="switchLang('ko')">한국어</a>
+    <a class="lang-btn" data-lang="es" onclick="switchLang('es')">Español</a>
+    <a class="lang-btn" data-lang="fr" onclick="switchLang('fr')">Français</a>
+    <a class="lang-btn" data-lang="de" onclick="switchLang('de')">Deutsch</a>
+    <a class="lang-btn" data-lang="pt-BR" onclick="switchLang('pt-BR')">Português</a>
+    <a class="lang-btn" data-lang="hi" onclick="switchLang('hi')">हिन्दी</a>
+    <a class="lang-btn" data-lang="ar" onclick="switchLang('ar')">العربية</a>
+  </div>
+
+  <div class="logo">
+    <div class="logo-icon">🎬</div>
+    <h1>FRAME CUTTER</h1>
+    <p>VIDEO TO PHOTO</p>
+    <span class="badge">Support</span>
+  </div>
+
+  <!-- ==================== ENGLISH ==================== -->
+  <div class="section en">
+    <h2>About the App</h2>
+    <p>Frame Cutter extracts still frames from videos at specified intervals. Record with the built-in camera or import videos from your photo library, then save high-quality frames as images.</p>
+    <div class="card">
+      <div class="card-title">Key Features</div>
+      <ul>
+        <li>Extract frames at custom intervals (0.1s, 0.5s, 1.0s, or custom)</li>
+        <li>Import videos from Camera Roll</li>
+        <li>Record videos directly in-app</li>
+        <li>Adjustable extraction range (start / end)</li>
+        <li>3-column grid gallery with timestamps</li>
+        <li>Full-screen slide viewer with pinch-to-zoom</li>
+        <li>Batch save to Photos or share</li>
+        <li>100% offline — no data leaves your device</li>
+      </ul>
+    </div>
+
+    <h2>Getting Started</h2>
+    <h3>1. Import a Video</h3>
+    <p>Tap the <strong>Import</strong> button to select a video from your Camera Roll. Alternatively, use the record button to capture a new video.</p>
+    <h3>2. Set Extraction Interval</h3>
+    <p>Choose an interval (0.1s, 0.5s, 1.0s) or tap <strong>Custom</strong> to enter your own value. Shorter intervals produce more frames.</p>
+    <h3>3. Extract Frames</h3>
+    <p>Tap the <strong>Extract</strong> button. You'll be asked to name the session. Frames are saved locally on your device.</p>
+    <h3>4. Browse & Save</h3>
+    <p>Go to the <strong>History</strong> tab to view your sessions. Tap a session to see the frame grid, then tap any frame for a full-screen view. Use <strong>Save All</strong> to export all frames to your Photos library.</p>
+
+    <h2>Permissions</h2>
+    <div class="card">
+      <ul>
+        <li><strong>Camera</strong> — Required only if you want to record video in-app. You can skip this and import videos instead.</li>
+        <li><strong>Photo Library</strong> — Required to import videos and save extracted frames.</li>
+      </ul>
+    </div>
+
+    <h2>FAQ</h2>
+    <p class="faq-q">Q: Does the app require an internet connection?</p>
+    <p class="faq-a">A: No. Frame Cutter works completely offline. No data is sent to any server.</p>
+
+    <p class="faq-q">Q: Where are the extracted frames stored?</p>
+    <p class="faq-a">A: Frames are stored in the app's Documents folder. You can access them via the Files app or iTunes File Sharing. They persist across app updates.</p>
+
+    <p class="faq-q">Q: What image format are frames saved in?</p>
+    <p class="faq-a">A: Frames are saved as JPEG files at 85% quality for a good balance of quality and file size.</p>
+
+    <p class="faq-q">Q: Can I extract frames from very long videos?</p>
+    <p class="faq-a">A: Yes. Use the range slider to select a specific section, or use a larger interval to reduce the total number of frames.</p>
+
+    <p class="faq-q">Q: The app is using a lot of storage. How do I free space?</p>
+    <p class="faq-a">A: Go to History, swipe left on a session, and delete it. This removes all associated frame images.</p>
+
+    <h2>System Requirements</h2>
+    <div class="card">
+      <ul>
+        <li>iOS 17.0 or later</li>
+        <li>iPhone or iPad</li>
+        <li>No internet connection required</li>
+      </ul>
+    </div>
+
+    <h2>Contact Us</h2>
+    <div class="contact-box">
+      <p>If you have questions, feedback, or need help, please contact us at:</p>
+      <p style="margin-top: 12px;"><a href="mailto:support@framecutter.app">support@framecutter.app</a></p>
+    </div>
+  </div>
+
+  <!-- ==================== JAPANESE ==================== -->
+  <div class="section ja">
+    <h2>アプリについて</h2>
+    <p>Frame Cutterは、動画から指定した間隔でフレーム（静止画）を抽出するアプリです。内蔵カメラで録画するか、カメラロールから動画をインポートして、高品質なフレーム画像を保存できます。</p>
+    <div class="card">
+      <div class="card-title">主な機能</div>
+      <ul>
+        <li>カスタム間隔でフレーム抽出（0.1秒、0.5秒、1.0秒、またはカスタム）</li>
+        <li>カメラロールから動画をインポート</li>
+        <li>アプリ内で動画を直接録画</li>
+        <li>抽出範囲の調整（開始 / 終了）</li>
+        <li>タイムスタンプ付き3列グリッドギャラリー</li>
+        <li>ピンチズーム対応のフルスクリーンスライドビューア</li>
+        <li>写真ライブラリへの一括保存・共有</li>
+        <li>完全オフライン動作 — データは端末から外に出ません</li>
+      </ul>
+    </div>
+
+    <h2>使い方</h2>
+    <h3>1. 動画をインポート</h3>
+    <p><strong>Import</strong>ボタンをタップしてカメラロールから動画を選択します。または、録画ボタンで新しい動画を撮影できます。</p>
+    <h3>2. 抽出間隔を設定</h3>
+    <p>間隔（0.1秒、0.5秒、1.0秒）を選ぶか、<strong>Custom</strong>をタップして任意の値を入力します。短い間隔にするとフレーム数が増えます。</p>
+    <h3>3. フレームを抽出</h3>
+    <p><strong>抽出</strong>ボタンをタップします。セッション名の入力を求められます。フレームは端末内にローカル保存されます。</p>
+    <h3>4. 閲覧・保存</h3>
+    <p><strong>履歴</strong>タブでセッション一覧を確認します。セッションをタップするとフレームグリッドが表示され、フレームをタップするとフルスクリーンで閲覧できます。<strong>全保存</strong>で写真ライブラリに一括エクスポートできます。</p>
+
+    <h2>権限について</h2>
+    <div class="card">
+      <ul>
+        <li><strong>カメラ</strong> — アプリ内で動画を録画する場合のみ必要です。動画のインポートだけなら不要です。</li>
+        <li><strong>写真ライブラリ</strong> — 動画のインポートと抽出フレームの保存に必要です。</li>
+      </ul>
+    </div>
+
+    <h2>よくある質問</h2>
+    <p class="faq-q">Q: インターネット接続は必要ですか？</p>
+    <p class="faq-a">A: いいえ。Frame Cutterは完全オフラインで動作します。サーバーへのデータ送信は一切ありません。</p>
+
+    <p class="faq-q">Q: 抽出したフレームはどこに保存されますか？</p>
+    <p class="faq-a">A: アプリのDocumentsフォルダに保存されます。ファイルアプリやiTunesファイル共有からアクセスでき、アプリのアップデート後もデータは保持されます。</p>
+
+    <p class="faq-q">Q: フレームの画像形式は？</p>
+    <p class="faq-a">A: JPEG形式（品質85%）で保存されます。画質とファイルサイズのバランスが取れた設定です。</p>
+
+    <p class="faq-q">Q: 長い動画からフレームを抽出できますか？</p>
+    <p class="faq-a">A: はい。範囲スライダーで特定の区間を選択するか、大きな間隔を設定してフレーム総数を減らすことができます。</p>
+
+    <p class="faq-q">Q: ストレージ容量を節約するには？</p>
+    <p class="faq-a">A: 履歴画面でセッションを左スワイプして削除すると、関連するフレーム画像がすべて削除されます。</p>
+
+    <h2>動作環境</h2>
+    <div class="card">
+      <ul>
+        <li>iOS 17.0 以降</li>
+        <li>iPhone または iPad</li>
+        <li>インターネット接続不要</li>
+      </ul>
+    </div>
+
+    <h2>お問い合わせ</h2>
+    <div class="contact-box">
+      <p>ご質問、フィードバック、サポートが必要な場合は、以下までご連絡ください：</p>
+      <p style="margin-top: 12px;"><a href="mailto:support@framecutter.app">support@framecutter.app</a></p>
+    </div>
+  </div>
+
+  <!-- ==================== SIMPLIFIED CHINESE ==================== -->
+  <div class="section zh-Hans">
+    <h2>关于应用</h2>
+    <p>Frame Cutter 可以按指定间隔从视频中提取静态帧。使用内置摄像头录制或从相册导入视频，然后将高质量帧保存为图片。</p>
+    <div class="card">
+      <div class="card-title">主要功能</div>
+      <ul>
+        <li>按自定义间隔提取帧（0.1秒、0.5秒、1.0秒或自定义）</li>
+        <li>从相册导入视频</li>
+        <li>在应用内直接录制视频</li>
+        <li>可调节提取范围（起始 / 结束）</li>
+        <li>带时间戳的3列网格画廊</li>
+        <li>支持双指缩放的全屏幻灯片查看器</li>
+        <li>批量保存到照片或分享</li>
+        <li>100%离线运行 — 数据不会离开您的设备</li>
+      </ul>
+    </div>
+
+    <h2>使用入门</h2>
+    <h3>1. 导入视频</h3>
+    <p>点击<strong>导入</strong>按钮从相册中选择视频。或者使用录制按钮拍摄新视频。</p>
+    <h3>2. 设置提取间隔</h3>
+    <p>选择间隔（0.1秒、0.5秒、1.0秒）或点击<strong>自定义</strong>输入您自己的值。间隔越短，提取的帧数越多。</p>
+    <h3>3. 提取帧</h3>
+    <p>点击<strong>提取</strong>按钮。系统会要求您为会话命名。帧将保存在您的设备本地。</p>
+    <h3>4. 浏览与保存</h3>
+    <p>前往<strong>历史记录</strong>标签查看您的会话。点击会话查看帧网格，点击任意帧进入全屏查看。使用<strong>全部保存</strong>将所有帧导出到照片库。</p>
+
+    <h2>权限</h2>
+    <div class="card">
+      <ul>
+        <li><strong>摄像头</strong> — 仅在您需要在应用内录制视频时需要。您可以跳过此步骤，直接导入视频。</li>
+        <li><strong>照片库</strong> — 导入视频和保存提取的帧时需要。</li>
+      </ul>
+    </div>
+
+    <h2>常见问题</h2>
+    <p class="faq-q">问：应用需要联网吗？</p>
+    <p class="faq-a">答：不需要。Frame Cutter 完全离线运行，不会向任何服务器发送数据。</p>
+
+    <p class="faq-q">问：提取的帧存储在哪里？</p>
+    <p class="faq-a">答：帧存储在应用的 Documents 文件夹中。您可以通过"文件"应用或 iTunes 文件共享访问它们。应用更新后数据会保留。</p>
+
+    <p class="faq-q">问：帧以什么图片格式保存？</p>
+    <p class="faq-a">答：帧以 85% 质量的 JPEG 格式保存，在质量和文件大小之间取得良好平衡。</p>
+
+    <p class="faq-q">问：可以从很长的视频中提取帧吗？</p>
+    <p class="faq-a">答：可以。使用范围滑块选择特定片段，或使用更大的间隔来减少帧总数。</p>
+
+    <p class="faq-q">问：应用占用了大量存储空间，如何释放？</p>
+    <p class="faq-a">答：前往历史记录，向左滑动会话并删除。这将删除所有相关的帧图片。</p>
+
+    <h2>系统要求</h2>
+    <div class="card">
+      <ul>
+        <li>iOS 17.0 或更高版本</li>
+        <li>iPhone 或 iPad</li>
+        <li>无需联网</li>
+      </ul>
+    </div>
+
+    <h2>联系我们</h2>
+    <div class="contact-box">
+      <p>如果您有任何问题、反馈或需要帮助，请通过以下方式联系我们：</p>
+      <p style="margin-top: 12px;"><a href="mailto:support@framecutter.app">support@framecutter.app</a></p>
+    </div>
+  </div>
+
+  <!-- ==================== TRADITIONAL CHINESE ==================== -->
+  <div class="section zh-Hant">
+    <h2>關於應用程式</h2>
+    <p>Frame Cutter 可以按指定間隔從影片中擷取靜態幀。使用內建相機錄製或從相簿匯入影片，然後將高品質幀儲存為圖片。</p>
+    <div class="card">
+      <div class="card-title">主要功能</div>
+      <ul>
+        <li>按自訂間隔擷取幀（0.1秒、0.5秒、1.0秒或自訂）</li>
+        <li>從相簿匯入影片</li>
+        <li>在應用程式內直接錄製影片</li>
+        <li>可調整擷取範圍（開始 / 結束）</li>
+        <li>帶時間戳的3欄網格圖庫</li>
+        <li>支援雙指縮放的全螢幕幻燈片檢視器</li>
+        <li>批次儲存至照片或分享</li>
+        <li>100%離線運作 — 資料不會離開您的裝置</li>
+      </ul>
+    </div>
+
+    <h2>使用入門</h2>
+    <h3>1. 匯入影片</h3>
+    <p>點擊<strong>匯入</strong>按鈕從相簿中選擇影片。或者使用錄製按鈕拍攝新影片。</p>
+    <h3>2. 設定擷取間隔</h3>
+    <p>選擇間隔（0.1秒、0.5秒、1.0秒）或點擊<strong>自訂</strong>輸入您自己的值。間隔越短，擷取的幀數越多。</p>
+    <h3>3. 擷取幀</h3>
+    <p>點擊<strong>擷取</strong>按鈕。系統會要求您為工作階段命名。幀將儲存在您的裝置本機。</p>
+    <h3>4. 瀏覽與儲存</h3>
+    <p>前往<strong>歷史紀錄</strong>標籤查看您的工作階段。點擊工作階段查看幀網格，點擊任意幀進入全螢幕檢視。使用<strong>全部儲存</strong>將所有幀匯出到照片圖庫。</p>
+
+    <h2>權限</h2>
+    <div class="card">
+      <ul>
+        <li><strong>相機</strong> — 僅在您需要在應用程式內錄製影片時需要。您可以跳過此步驟，直接匯入影片。</li>
+        <li><strong>照片圖庫</strong> — 匯入影片和儲存擷取的幀時需要。</li>
+      </ul>
+    </div>
+
+    <h2>常見問題</h2>
+    <p class="faq-q">問：應用程式需要網路連線嗎？</p>
+    <p class="faq-a">答：不需要。Frame Cutter 完全離線運作，不會向任何伺服器傳送資料。</p>
+
+    <p class="faq-q">問：擷取的幀儲存在哪裡？</p>
+    <p class="faq-a">答：幀儲存在應用程式的 Documents 資料夾中。您可以透過「檔案」應用程式或 iTunes 檔案共享存取。應用程式更新後資料會保留。</p>
+
+    <p class="faq-q">問：幀以什麼圖片格式儲存？</p>
+    <p class="faq-a">答：幀以 85% 品質的 JPEG 格式儲存，在品質和檔案大小之間取得良好平衡。</p>
+
+    <p class="faq-q">問：可以從很長的影片中擷取幀嗎？</p>
+    <p class="faq-a">答：可以。使用範圍滑桿選擇特定片段，或使用更大的間隔來減少幀總數。</p>
+
+    <p class="faq-q">問：應用程式佔用了大量儲存空間，如何釋放？</p>
+    <p class="faq-a">答：前往歷史紀錄，向左滑動工作階段並刪除。這將刪除所有相關的幀圖片。</p>
+
+    <h2>系統需求</h2>
+    <div class="card">
+      <ul>
+        <li>iOS 17.0 或更高版本</li>
+        <li>iPhone 或 iPad</li>
+        <li>無需網路連線</li>
+      </ul>
+    </div>
+
+    <h2>聯絡我們</h2>
+    <div class="contact-box">
+      <p>如果您有任何問題、回饋或需要協助，請透過以下方式聯絡我們：</p>
+      <p style="margin-top: 12px;"><a href="mailto:support@framecutter.app">support@framecutter.app</a></p>
+    </div>
+  </div>
+
+  <!-- ==================== KOREAN ==================== -->
+  <div class="section ko">
+    <h2>앱 소개</h2>
+    <p>Frame Cutter는 동영상에서 지정된 간격으로 정지 프레임을 추출합니다. 내장 카메라로 촬영하거나 사진 보관함에서 동영상을 가져온 다음 고화질 프레임을 이미지로 저장하세요.</p>
+    <div class="card">
+      <div class="card-title">주요 기능</div>
+      <ul>
+        <li>사용자 지정 간격으로 프레임 추출 (0.1초, 0.5초, 1.0초 또는 사용자 지정)</li>
+        <li>카메라 롤에서 동영상 가져오기</li>
+        <li>앱 내에서 직접 동영상 촬영</li>
+        <li>추출 범위 조절 (시작 / 종료)</li>
+        <li>타임스탬프가 포함된 3열 그리드 갤러리</li>
+        <li>핀치 줌을 지원하는 전체 화면 슬라이드 뷰어</li>
+        <li>사진 보관함에 일괄 저장 또는 공유</li>
+        <li>100% 오프라인 — 데이터가 기기를 떠나지 않습니다</li>
+      </ul>
+    </div>
+
+    <h2>시작하기</h2>
+    <h3>1. 동영상 가져오기</h3>
+    <p><strong>가져오기</strong> 버튼을 탭하여 카메라 롤에서 동영상을 선택하세요. 또는 녹화 버튼을 사용하여 새 동영상을 촬영할 수 있습니다.</p>
+    <h3>2. 추출 간격 설정</h3>
+    <p>간격(0.1초, 0.5초, 1.0초)을 선택하거나 <strong>사용자 지정</strong>을 탭하여 직접 값을 입력하세요. 간격이 짧을수록 더 많은 프레임이 생성됩니다.</p>
+    <h3>3. 프레임 추출</h3>
+    <p><strong>추출</strong> 버튼을 탭하세요. 세션 이름을 지정하라는 메시지가 표시됩니다. 프레임은 기기에 로컬로 저장됩니다.</p>
+    <h3>4. 탐색 및 저장</h3>
+    <p><strong>기록</strong> 탭으로 이동하여 세션을 확인하세요. 세션을 탭하면 프레임 그리드가 표시되고, 프레임을 탭하면 전체 화면으로 볼 수 있습니다. <strong>모두 저장</strong>을 사용하여 모든 프레임을 사진 보관함으로 내보내세요.</p>
+
+    <h2>권한</h2>
+    <div class="card">
+      <ul>
+        <li><strong>카메라</strong> — 앱 내에서 동영상을 촬영하려는 경우에만 필요합니다. 이 단계를 건너뛰고 동영상을 가져올 수 있습니다.</li>
+        <li><strong>사진 보관함</strong> — 동영상 가져오기 및 추출된 프레임 저장에 필요합니다.</li>
+      </ul>
+    </div>
+
+    <h2>자주 묻는 질문</h2>
+    <p class="faq-q">Q: 앱에 인터넷 연결이 필요한가요?</p>
+    <p class="faq-a">A: 아니요. Frame Cutter는 완전히 오프라인으로 작동합니다. 어떤 서버로도 데이터가 전송되지 않습니다.</p>
+
+    <p class="faq-q">Q: 추출된 프레임은 어디에 저장되나요?</p>
+    <p class="faq-a">A: 프레임은 앱의 Documents 폴더에 저장됩니다. 파일 앱이나 iTunes 파일 공유를 통해 접근할 수 있으며, 앱 업데이트 후에도 유지됩니다.</p>
+
+    <p class="faq-q">Q: 프레임은 어떤 이미지 형식으로 저장되나요?</p>
+    <p class="faq-a">A: 프레임은 화질과 파일 크기의 균형을 위해 85% 품질의 JPEG 파일로 저장됩니다.</p>
+
+    <p class="faq-q">Q: 매우 긴 동영상에서 프레임을 추출할 수 있나요?</p>
+    <p class="faq-a">A: 네. 범위 슬라이더를 사용하여 특정 구간을 선택하거나, 더 큰 간격을 사용하여 총 프레임 수를 줄일 수 있습니다.</p>
+
+    <p class="faq-q">Q: 앱이 저장 공간을 많이 사용합니다. 공간을 확보하려면 어떻게 하나요?</p>
+    <p class="faq-a">A: 기록으로 이동하여 세션을 왼쪽으로 스와이프한 후 삭제하세요. 관련된 모든 프레임 이미지가 제거됩니다.</p>
+
+    <h2>시스템 요구 사항</h2>
+    <div class="card">
+      <ul>
+        <li>iOS 17.0 이상</li>
+        <li>iPhone 또는 iPad</li>
+        <li>인터넷 연결 불필요</li>
+      </ul>
+    </div>
+
+    <h2>문의하기</h2>
+    <div class="contact-box">
+      <p>질문, 피드백 또는 도움이 필요하시면 아래로 연락해 주세요:</p>
+      <p style="margin-top: 12px;"><a href="mailto:support@framecutter.app">support@framecutter.app</a></p>
+    </div>
+  </div>
+
+  <!-- ==================== SPANISH ==================== -->
+  <div class="section es">
+    <h2>Acerca de la App</h2>
+    <p>Frame Cutter extrae fotogramas fijos de vídeos a intervalos especificados. Graba con la cámara integrada o importa vídeos desde tu biblioteca de fotos, y guarda fotogramas de alta calidad como imágenes.</p>
+    <div class="card">
+      <div class="card-title">Características principales</div>
+      <ul>
+        <li>Extrae fotogramas a intervalos personalizados (0.1s, 0.5s, 1.0s o personalizado)</li>
+        <li>Importa vídeos desde el Carrete</li>
+        <li>Graba vídeos directamente en la app</li>
+        <li>Rango de extracción ajustable (inicio / fin)</li>
+        <li>Galería en cuadrícula de 3 columnas con marcas de tiempo</li>
+        <li>Visor de diapositivas a pantalla completa con zoom de pellizco</li>
+        <li>Guardado por lotes en Fotos o compartir</li>
+        <li>100% sin conexión — ningún dato sale de tu dispositivo</li>
+      </ul>
+    </div>
+
+    <h2>Cómo empezar</h2>
+    <h3>1. Importar un vídeo</h3>
+    <p>Toca el botón <strong>Importar</strong> para seleccionar un vídeo de tu Carrete. También puedes usar el botón de grabación para capturar un nuevo vídeo.</p>
+    <h3>2. Establecer el intervalo de extracción</h3>
+    <p>Elige un intervalo (0.1s, 0.5s, 1.0s) o toca <strong>Personalizado</strong> para ingresar tu propio valor. Los intervalos más cortos producen más fotogramas.</p>
+    <h3>3. Extraer fotogramas</h3>
+    <p>Toca el botón <strong>Extraer</strong>. Se te pedirá que nombres la sesión. Los fotogramas se guardan localmente en tu dispositivo.</p>
+    <h3>4. Explorar y guardar</h3>
+    <p>Ve a la pestaña <strong>Historial</strong> para ver tus sesiones. Toca una sesión para ver la cuadrícula de fotogramas, luego toca cualquier fotograma para verlo a pantalla completa. Usa <strong>Guardar todo</strong> para exportar todos los fotogramas a tu biblioteca de Fotos.</p>
+
+    <h2>Permisos</h2>
+    <div class="card">
+      <ul>
+        <li><strong>Cámara</strong> — Solo necesario si deseas grabar vídeo en la app. Puedes omitir esto e importar vídeos en su lugar.</li>
+        <li><strong>Biblioteca de fotos</strong> — Necesario para importar vídeos y guardar los fotogramas extraídos.</li>
+      </ul>
+    </div>
+
+    <h2>Preguntas frecuentes</h2>
+    <p class="faq-q">P: ¿La app requiere conexión a Internet?</p>
+    <p class="faq-a">R: No. Frame Cutter funciona completamente sin conexión. No se envían datos a ningún servidor.</p>
+
+    <p class="faq-q">P: ¿Dónde se almacenan los fotogramas extraídos?</p>
+    <p class="faq-a">R: Los fotogramas se almacenan en la carpeta Documents de la app. Puedes acceder a ellos a través de la app Archivos o iTunes File Sharing. Se mantienen después de las actualizaciones de la app.</p>
+
+    <p class="faq-q">P: ¿En qué formato de imagen se guardan los fotogramas?</p>
+    <p class="faq-a">R: Los fotogramas se guardan como archivos JPEG al 85% de calidad para un buen equilibrio entre calidad y tamaño de archivo.</p>
+
+    <p class="faq-q">P: ¿Puedo extraer fotogramas de vídeos muy largos?</p>
+    <p class="faq-a">R: Sí. Usa el control deslizante de rango para seleccionar una sección específica, o usa un intervalo mayor para reducir el número total de fotogramas.</p>
+
+    <p class="faq-q">P: La app está usando mucho almacenamiento. ¿Cómo libero espacio?</p>
+    <p class="faq-a">R: Ve al Historial, desliza a la izquierda sobre una sesión y elimínala. Esto elimina todas las imágenes de fotogramas asociadas.</p>
+
+    <h2>Requisitos del sistema</h2>
+    <div class="card">
+      <ul>
+        <li>iOS 17.0 o posterior</li>
+        <li>iPhone o iPad</li>
+        <li>No requiere conexión a Internet</li>
+      </ul>
+    </div>
+
+    <h2>Contáctanos</h2>
+    <div class="contact-box">
+      <p>Si tienes preguntas, comentarios o necesitas ayuda, contáctanos en:</p>
+      <p style="margin-top: 12px;"><a href="mailto:support@framecutter.app">support@framecutter.app</a></p>
+    </div>
+  </div>
+
+  <!-- ==================== FRENCH ==================== -->
+  <div class="section fr">
+    <h2>À propos de l'application</h2>
+    <p>Frame Cutter extrait des images fixes de vidéos à des intervalles spécifiés. Enregistrez avec la caméra intégrée ou importez des vidéos depuis votre photothèque, puis enregistrez des images de haute qualité.</p>
+    <div class="card">
+      <div class="card-title">Fonctionnalités principales</div>
+      <ul>
+        <li>Extraction d'images à intervalles personnalisés (0.1s, 0.5s, 1.0s ou personnalisé)</li>
+        <li>Importation de vidéos depuis la Pellicule</li>
+        <li>Enregistrement de vidéos directement dans l'application</li>
+        <li>Plage d'extraction ajustable (début / fin)</li>
+        <li>Galerie en grille de 3 colonnes avec horodatages</li>
+        <li>Visionneuse plein écran avec zoom par pincement</li>
+        <li>Sauvegarde par lot vers Photos ou partage</li>
+        <li>100% hors ligne — aucune donnée ne quitte votre appareil</li>
+      </ul>
+    </div>
+
+    <h2>Pour commencer</h2>
+    <h3>1. Importer une vidéo</h3>
+    <p>Appuyez sur le bouton <strong>Importer</strong> pour sélectionner une vidéo de votre Pellicule. Vous pouvez aussi utiliser le bouton d'enregistrement pour capturer une nouvelle vidéo.</p>
+    <h3>2. Définir l'intervalle d'extraction</h3>
+    <p>Choisissez un intervalle (0.1s, 0.5s, 1.0s) ou appuyez sur <strong>Personnalisé</strong> pour saisir votre propre valeur. Des intervalles plus courts produisent plus d'images.</p>
+    <h3>3. Extraire les images</h3>
+    <p>Appuyez sur le bouton <strong>Extraire</strong>. Il vous sera demandé de nommer la session. Les images sont enregistrées localement sur votre appareil.</p>
+    <h3>4. Parcourir et enregistrer</h3>
+    <p>Allez dans l'onglet <strong>Historique</strong> pour voir vos sessions. Appuyez sur une session pour voir la grille d'images, puis appuyez sur n'importe quelle image pour la voir en plein écran. Utilisez <strong>Tout enregistrer</strong> pour exporter toutes les images vers votre photothèque.</p>
+
+    <h2>Autorisations</h2>
+    <div class="card">
+      <ul>
+        <li><strong>Caméra</strong> — Nécessaire uniquement si vous souhaitez enregistrer une vidéo dans l'application. Vous pouvez ignorer ceci et importer des vidéos à la place.</li>
+        <li><strong>Photothèque</strong> — Nécessaire pour importer des vidéos et enregistrer les images extraites.</li>
+      </ul>
+    </div>
+
+    <h2>Questions fréquentes</h2>
+    <p class="faq-q">Q : L'application nécessite-t-elle une connexion Internet ?</p>
+    <p class="faq-a">R : Non. Frame Cutter fonctionne entièrement hors ligne. Aucune donnée n'est envoyée à un serveur.</p>
+
+    <p class="faq-q">Q : Où sont stockées les images extraites ?</p>
+    <p class="faq-a">R : Les images sont stockées dans le dossier Documents de l'application. Vous pouvez y accéder via l'application Fichiers ou le partage de fichiers iTunes. Elles persistent après les mises à jour de l'application.</p>
+
+    <p class="faq-q">Q : Dans quel format d'image les cadres sont-ils enregistrés ?</p>
+    <p class="faq-a">R : Les images sont enregistrées en fichiers JPEG à 85% de qualité pour un bon équilibre entre qualité et taille de fichier.</p>
+
+    <p class="faq-q">Q : Puis-je extraire des images de vidéos très longues ?</p>
+    <p class="faq-a">R : Oui. Utilisez le curseur de plage pour sélectionner une section spécifique, ou utilisez un intervalle plus grand pour réduire le nombre total d'images.</p>
+
+    <p class="faq-q">Q : L'application utilise beaucoup de stockage. Comment libérer de l'espace ?</p>
+    <p class="faq-a">R : Allez dans l'Historique, glissez vers la gauche sur une session et supprimez-la. Cela supprime toutes les images associées.</p>
+
+    <h2>Configuration requise</h2>
+    <div class="card">
+      <ul>
+        <li>iOS 17.0 ou ultérieur</li>
+        <li>iPhone ou iPad</li>
+        <li>Aucune connexion Internet requise</li>
+      </ul>
+    </div>
+
+    <h2>Nous contacter</h2>
+    <div class="contact-box">
+      <p>Si vous avez des questions, des commentaires ou besoin d'aide, contactez-nous à :</p>
+      <p style="margin-top: 12px;"><a href="mailto:support@framecutter.app">support@framecutter.app</a></p>
+    </div>
+  </div>
+
+  <!-- ==================== GERMAN ==================== -->
+  <div class="section de">
+    <h2>Über die App</h2>
+    <p>Frame Cutter extrahiert Standbilder aus Videos in festgelegten Intervallen. Nehmen Sie mit der integrierten Kamera auf oder importieren Sie Videos aus Ihrer Fotomediathek und speichern Sie hochwertige Einzelbilder.</p>
+    <div class="card">
+      <div class="card-title">Hauptfunktionen</div>
+      <ul>
+        <li>Einzelbilder in benutzerdefinierten Intervallen extrahieren (0,1s, 0,5s, 1,0s oder benutzerdefiniert)</li>
+        <li>Videos aus der Kamerarolle importieren</li>
+        <li>Videos direkt in der App aufnehmen</li>
+        <li>Einstellbarer Extraktionsbereich (Start / Ende)</li>
+        <li>3-Spalten-Rastergalerie mit Zeitstempeln</li>
+        <li>Vollbild-Diashow mit Pinch-to-Zoom</li>
+        <li>Stapelspeicherung in Fotos oder Teilen</li>
+        <li>100% offline — keine Daten verlassen Ihr Gerät</li>
+      </ul>
+    </div>
+
+    <h2>Erste Schritte</h2>
+    <h3>1. Video importieren</h3>
+    <p>Tippen Sie auf die Schaltfläche <strong>Importieren</strong>, um ein Video aus Ihrer Kamerarolle auszuwählen. Alternativ können Sie die Aufnahmetaste verwenden, um ein neues Video aufzunehmen.</p>
+    <h3>2. Extraktionsintervall festlegen</h3>
+    <p>Wählen Sie ein Intervall (0,1s, 0,5s, 1,0s) oder tippen Sie auf <strong>Benutzerdefiniert</strong>, um einen eigenen Wert einzugeben. Kürzere Intervalle erzeugen mehr Einzelbilder.</p>
+    <h3>3. Einzelbilder extrahieren</h3>
+    <p>Tippen Sie auf die Schaltfläche <strong>Extrahieren</strong>. Sie werden aufgefordert, die Sitzung zu benennen. Einzelbilder werden lokal auf Ihrem Gerät gespeichert.</p>
+    <h3>4. Durchsuchen und speichern</h3>
+    <p>Gehen Sie zum Tab <strong>Verlauf</strong>, um Ihre Sitzungen anzuzeigen. Tippen Sie auf eine Sitzung, um das Einzelbild-Raster zu sehen, und tippen Sie auf ein beliebiges Bild für die Vollbildansicht. Verwenden Sie <strong>Alle speichern</strong>, um alle Einzelbilder in Ihre Fotomediathek zu exportieren.</p>
+
+    <h2>Berechtigungen</h2>
+    <div class="card">
+      <ul>
+        <li><strong>Kamera</strong> — Nur erforderlich, wenn Sie Videos in der App aufnehmen möchten. Sie können dies überspringen und stattdessen Videos importieren.</li>
+        <li><strong>Fotomediathek</strong> — Erforderlich zum Importieren von Videos und Speichern extrahierter Einzelbilder.</li>
+      </ul>
+    </div>
+
+    <h2>Häufig gestellte Fragen</h2>
+    <p class="faq-q">F: Benötigt die App eine Internetverbindung?</p>
+    <p class="faq-a">A: Nein. Frame Cutter funktioniert vollständig offline. Es werden keine Daten an einen Server gesendet.</p>
+
+    <p class="faq-q">F: Wo werden die extrahierten Einzelbilder gespeichert?</p>
+    <p class="faq-a">A: Einzelbilder werden im Ordner „Documents" der App gespeichert. Sie können über die Dateien-App oder iTunes-Dateifreigabe darauf zugreifen. Sie bleiben nach App-Updates erhalten.</p>
+
+    <p class="faq-q">F: In welchem Bildformat werden die Einzelbilder gespeichert?</p>
+    <p class="faq-a">A: Einzelbilder werden als JPEG-Dateien mit 85% Qualität gespeichert — ein guter Kompromiss zwischen Qualität und Dateigröße.</p>
+
+    <p class="faq-q">F: Kann ich Einzelbilder aus sehr langen Videos extrahieren?</p>
+    <p class="faq-a">A: Ja. Verwenden Sie den Bereichsregler, um einen bestimmten Abschnitt auszuwählen, oder verwenden Sie ein größeres Intervall, um die Gesamtzahl der Einzelbilder zu reduzieren.</p>
+
+    <p class="faq-q">F: Die App verbraucht viel Speicherplatz. Wie gebe ich Speicher frei?</p>
+    <p class="faq-a">A: Gehen Sie zum Verlauf, wischen Sie bei einer Sitzung nach links und löschen Sie sie. Dadurch werden alle zugehörigen Einzelbilder entfernt.</p>
+
+    <h2>Systemanforderungen</h2>
+    <div class="card">
+      <ul>
+        <li>iOS 17.0 oder neuer</li>
+        <li>iPhone oder iPad</li>
+        <li>Keine Internetverbindung erforderlich</li>
+      </ul>
+    </div>
+
+    <h2>Kontakt</h2>
+    <div class="contact-box">
+      <p>Wenn Sie Fragen, Feedback oder Hilfe benötigen, kontaktieren Sie uns unter:</p>
+      <p style="margin-top: 12px;"><a href="mailto:support@framecutter.app">support@framecutter.app</a></p>
+    </div>
+  </div>
+
+  <!-- ==================== PORTUGUESE (BRAZIL) ==================== -->
+  <div class="section pt-BR">
+    <h2>Sobre o App</h2>
+    <p>O Frame Cutter extrai quadros estáticos de vídeos em intervalos especificados. Grave com a câmera integrada ou importe vídeos da sua biblioteca de fotos e salve quadros de alta qualidade como imagens.</p>
+    <div class="card">
+      <div class="card-title">Principais recursos</div>
+      <ul>
+        <li>Extrair quadros em intervalos personalizados (0.1s, 0.5s, 1.0s ou personalizado)</li>
+        <li>Importar vídeos do Rolo da Câmera</li>
+        <li>Gravar vídeos diretamente no app</li>
+        <li>Faixa de extração ajustável (início / fim)</li>
+        <li>Galeria em grade de 3 colunas com timestamps</li>
+        <li>Visualizador em tela cheia com zoom de pinça</li>
+        <li>Salvar em lote nas Fotos ou compartilhar</li>
+        <li>100% offline — nenhum dado sai do seu dispositivo</li>
+      </ul>
+    </div>
+
+    <h2>Como começar</h2>
+    <h3>1. Importar um vídeo</h3>
+    <p>Toque no botão <strong>Importar</strong> para selecionar um vídeo do seu Rolo da Câmera. Alternativamente, use o botão de gravação para capturar um novo vídeo.</p>
+    <h3>2. Definir o intervalo de extração</h3>
+    <p>Escolha um intervalo (0.1s, 0.5s, 1.0s) ou toque em <strong>Personalizado</strong> para inserir seu próprio valor. Intervalos mais curtos produzem mais quadros.</p>
+    <h3>3. Extrair quadros</h3>
+    <p>Toque no botão <strong>Extrair</strong>. Você será solicitado a nomear a sessão. Os quadros são salvos localmente no seu dispositivo.</p>
+    <h3>4. Navegar e salvar</h3>
+    <p>Vá para a aba <strong>Histórico</strong> para ver suas sessões. Toque em uma sessão para ver a grade de quadros, depois toque em qualquer quadro para visualização em tela cheia. Use <strong>Salvar tudo</strong> para exportar todos os quadros para sua biblioteca de Fotos.</p>
+
+    <h2>Permissões</h2>
+    <div class="card">
+      <ul>
+        <li><strong>Câmera</strong> — Necessária apenas se você quiser gravar vídeo no app. Você pode pular isso e importar vídeos.</li>
+        <li><strong>Biblioteca de Fotos</strong> — Necessária para importar vídeos e salvar os quadros extraídos.</li>
+      </ul>
+    </div>
+
+    <h2>Perguntas frequentes</h2>
+    <p class="faq-q">P: O app requer conexão com a Internet?</p>
+    <p class="faq-a">R: Não. O Frame Cutter funciona completamente offline. Nenhum dado é enviado a qualquer servidor.</p>
+
+    <p class="faq-q">P: Onde os quadros extraídos são armazenados?</p>
+    <p class="faq-a">R: Os quadros são armazenados na pasta Documents do app. Você pode acessá-los pelo app Arquivos ou pelo Compartilhamento de Arquivos do iTunes. Eles persistem após atualizações do app.</p>
+
+    <p class="faq-q">P: Em qual formato de imagem os quadros são salvos?</p>
+    <p class="faq-a">R: Os quadros são salvos como arquivos JPEG com 85% de qualidade, um bom equilíbrio entre qualidade e tamanho de arquivo.</p>
+
+    <p class="faq-q">P: Posso extrair quadros de vídeos muito longos?</p>
+    <p class="faq-a">R: Sim. Use o controle deslizante de faixa para selecionar uma seção específica, ou use um intervalo maior para reduzir o número total de quadros.</p>
+
+    <p class="faq-q">P: O app está usando muito armazenamento. Como libero espaço?</p>
+    <p class="faq-a">R: Vá para o Histórico, deslize para a esquerda em uma sessão e exclua. Isso remove todas as imagens de quadros associadas.</p>
+
+    <h2>Requisitos do sistema</h2>
+    <div class="card">
+      <ul>
+        <li>iOS 17.0 ou posterior</li>
+        <li>iPhone ou iPad</li>
+        <li>Conexão com a Internet não necessária</li>
+      </ul>
+    </div>
+
+    <h2>Fale conosco</h2>
+    <div class="contact-box">
+      <p>Se você tiver perguntas, feedback ou precisar de ajuda, entre em contato conosco em:</p>
+      <p style="margin-top: 12px;"><a href="mailto:support@framecutter.app">support@framecutter.app</a></p>
+    </div>
+  </div>
+
+  <!-- ==================== HINDI ==================== -->
+  <div class="section hi">
+    <h2>ऐप के बारे में</h2>
+    <p>Frame Cutter निर्दिष्ट अंतराल पर वीडियो से स्थिर फ़्रेम निकालता है। बिल्ट-इन कैमरे से रिकॉर्ड करें या अपनी फ़ोटो लाइब्रेरी से वीडियो आयात करें, फिर उच्च-गुणवत्ता वाले फ़्रेम को छवियों के रूप में सहेजें।</p>
+    <div class="card">
+      <div class="card-title">मुख्य विशेषताएँ</div>
+      <ul>
+        <li>कस्टम अंतराल पर फ़्रेम निकालें (0.1s, 0.5s, 1.0s, या कस्टम)</li>
+        <li>कैमरा रोल से वीडियो आयात करें</li>
+        <li>ऐप में सीधे वीडियो रिकॉर्ड करें</li>
+        <li>समायोज्य निष्कर्षण सीमा (शुरू / अंत)</li>
+        <li>टाइमस्टैम्प के साथ 3-कॉलम ग्रिड गैलरी</li>
+        <li>पिंच-टू-ज़ूम के साथ फ़ुल-स्क्रीन स्लाइड व्यूअर</li>
+        <li>फ़ोटो में बैच सेव या शेयर करें</li>
+        <li>100% ऑफ़लाइन — कोई डेटा आपके डिवाइस से बाहर नहीं जाता</li>
+      </ul>
+    </div>
+
+    <h2>शुरू करें</h2>
+    <h3>1. वीडियो आयात करें</h3>
+    <p>अपने कैमरा रोल से वीडियो चुनने के लिए <strong>Import</strong> बटन टैप करें। वैकल्पिक रूप से, नया वीडियो कैप्चर करने के लिए रिकॉर्ड बटन का उपयोग करें।</p>
+    <h3>2. निष्कर्षण अंतराल सेट करें</h3>
+    <p>अंतराल चुनें (0.1s, 0.5s, 1.0s) या अपना मान दर्ज करने के लिए <strong>Custom</strong> टैप करें। छोटे अंतराल अधिक फ़्रेम उत्पन्न करते हैं।</p>
+    <h3>3. फ़्रेम निकालें</h3>
+    <p><strong>Extract</strong> बटन टैप करें। आपसे सत्र का नाम रखने को कहा जाएगा। फ़्रेम आपके डिवाइस पर स्थानीय रूप से सहेजे जाते हैं।</p>
+    <h3>4. ब्राउज़ करें और सहेजें</h3>
+    <p>अपने सत्र देखने के लिए <strong>History</strong> टैब पर जाएँ। फ़्रेम ग्रिड देखने के लिए सत्र टैप करें, फिर फ़ुल-स्क्रीन दृश्य के लिए कोई भी फ़्रेम टैप करें। सभी फ़्रेम को अपनी फ़ोटो लाइब्रेरी में निर्यात करने के लिए <strong>Save All</strong> का उपयोग करें।</p>
+
+    <h2>अनुमतियाँ</h2>
+    <div class="card">
+      <ul>
+        <li><strong>कैमरा</strong> — केवल तभी आवश्यक जब आप ऐप में वीडियो रिकॉर्ड करना चाहते हैं। आप इसे छोड़ सकते हैं और इसके बजाय वीडियो आयात कर सकते हैं।</li>
+        <li><strong>फ़ोटो लाइब्रेरी</strong> — वीडियो आयात करने और निकाले गए फ़्रेम सहेजने के लिए आवश्यक।</li>
+      </ul>
+    </div>
+
+    <h2>अक्सर पूछे जाने वाले प्रश्न</h2>
+    <p class="faq-q">प्रश्न: क्या ऐप को इंटरनेट कनेक्शन की आवश्यकता है?</p>
+    <p class="faq-a">उत्तर: नहीं। Frame Cutter पूरी तरह से ऑफ़लाइन काम करता है। किसी भी सर्वर पर कोई डेटा नहीं भेजा जाता।</p>
+
+    <p class="faq-q">प्रश्न: निकाले गए फ़्रेम कहाँ संग्रहीत होते हैं?</p>
+    <p class="faq-a">उत्तर: फ़्रेम ऐप के Documents फ़ोल्डर में संग्रहीत होते हैं। आप उन्हें Files ऐप या iTunes File Sharing के माध्यम से एक्सेस कर सकते हैं। वे ऐप अपडेट के बाद भी बने रहते हैं।</p>
+
+    <p class="faq-q">प्रश्न: फ़्रेम किस छवि प्रारूप में सहेजे जाते हैं?</p>
+    <p class="faq-a">उत्तर: फ़्रेम 85% गुणवत्ता पर JPEG फ़ाइलों के रूप में सहेजे जाते हैं, जो गुणवत्ता और फ़ाइल आकार का अच्छा संतुलन प्रदान करता है।</p>
+
+    <p class="faq-q">प्रश्न: क्या मैं बहुत लंबे वीडियो से फ़्रेम निकाल सकता हूँ?</p>
+    <p class="faq-a">उत्तर: हाँ। किसी विशिष्ट खंड का चयन करने के लिए रेंज स्लाइडर का उपयोग करें, या फ़्रेम की कुल संख्या कम करने के लिए बड़े अंतराल का उपयोग करें।</p>
+
+    <p class="faq-q">प्रश्न: ऐप बहुत अधिक स्टोरेज उपयोग कर रहा है। मैं जगह कैसे खाली करूँ?</p>
+    <p class="faq-a">उत्तर: History में जाएँ, सत्र पर बाईं ओर स्वाइप करें और हटाएँ। इससे सभी संबंधित फ़्रेम छवियाँ हट जाएँगी।</p>
+
+    <h2>सिस्टम आवश्यकताएँ</h2>
+    <div class="card">
+      <ul>
+        <li>iOS 17.0 या बाद का संस्करण</li>
+        <li>iPhone या iPad</li>
+        <li>इंटरनेट कनेक्शन आवश्यक नहीं</li>
+      </ul>
+    </div>
+
+    <h2>हमसे संपर्क करें</h2>
+    <div class="contact-box">
+      <p>यदि आपके कोई प्रश्न हैं, प्रतिक्रिया है, या सहायता चाहिए, तो कृपया हमसे संपर्क करें:</p>
+      <p style="margin-top: 12px;"><a href="mailto:support@framecutter.app">support@framecutter.app</a></p>
+    </div>
+  </div>
+
+  <!-- ==================== ARABIC ==================== -->
+  <div class="section ar" dir="rtl">
+    <h2>حول التطبيق</h2>
+    <p>يستخرج Frame Cutter إطارات ثابتة من مقاطع الفيديو على فترات زمنية محددة. سجّل بالكاميرا المدمجة أو استورد مقاطع فيديو من مكتبة الصور، ثم احفظ إطارات عالية الجودة كصور.</p>
+    <div class="card">
+      <div class="card-title">الميزات الرئيسية</div>
+      <ul>
+        <li>استخراج إطارات بفترات زمنية مخصصة (0.1 ثانية، 0.5 ثانية، 1.0 ثانية، أو مخصص)</li>
+        <li>استيراد مقاطع الفيديو من ألبوم الكاميرا</li>
+        <li>تسجيل مقاطع الفيديو مباشرة في التطبيق</li>
+        <li>نطاق استخراج قابل للتعديل (البداية / النهاية)</li>
+        <li>معرض شبكي من 3 أعمدة مع طوابع زمنية</li>
+        <li>عارض شرائح بملء الشاشة مع التكبير بالقرص</li>
+        <li>حفظ دفعي إلى الصور أو المشاركة</li>
+        <li>يعمل بالكامل دون إنترنت — لا تغادر أي بيانات جهازك</li>
+      </ul>
+    </div>
+
+    <h2>البدء</h2>
+    <h3>1. استيراد فيديو</h3>
+    <p>اضغط على زر <strong>استيراد</strong> لاختيار فيديو من ألبوم الكاميرا. بدلاً من ذلك، استخدم زر التسجيل لالتقاط فيديو جديد.</p>
+    <h3>2. تعيين فترة الاستخراج</h3>
+    <p>اختر فترة زمنية (0.1 ثانية، 0.5 ثانية، 1.0 ثانية) أو اضغط على <strong>مخصص</strong> لإدخال قيمتك الخاصة. الفترات الأقصر تنتج إطارات أكثر.</p>
+    <h3>3. استخراج الإطارات</h3>
+    <p>اضغط على زر <strong>استخراج</strong>. سيُطلب منك تسمية الجلسة. تُحفظ الإطارات محلياً على جهازك.</p>
+    <h3>4. التصفح والحفظ</h3>
+    <p>انتقل إلى علامة تبويب <strong>السجل</strong> لعرض جلساتك. اضغط على جلسة لرؤية شبكة الإطارات، ثم اضغط على أي إطار للعرض بملء الشاشة. استخدم <strong>حفظ الكل</strong> لتصدير جميع الإطارات إلى مكتبة الصور.</p>
+
+    <h2>الأذونات</h2>
+    <div class="card">
+      <ul>
+        <li><strong>الكاميرا</strong> — مطلوبة فقط إذا كنت تريد تسجيل فيديو في التطبيق. يمكنك تخطي ذلك واستيراد مقاطع الفيديو بدلاً من ذلك.</li>
+        <li><strong>مكتبة الصور</strong> — مطلوبة لاستيراد مقاطع الفيديو وحفظ الإطارات المستخرجة.</li>
+      </ul>
+    </div>
+
+    <h2>الأسئلة الشائعة</h2>
+    <p class="faq-q">س: هل يتطلب التطبيق اتصالاً بالإنترنت؟</p>
+    <p class="faq-a">ج: لا. يعمل Frame Cutter بالكامل دون اتصال. لا تُرسل أي بيانات إلى أي خادم.</p>
+
+    <p class="faq-q">س: أين تُخزّن الإطارات المستخرجة؟</p>
+    <p class="faq-a">ج: تُخزّن الإطارات في مجلد Documents الخاص بالتطبيق. يمكنك الوصول إليها عبر تطبيق الملفات أو مشاركة ملفات iTunes. تبقى بعد تحديثات التطبيق.</p>
+
+    <p class="faq-q">س: بأي تنسيق صور تُحفظ الإطارات؟</p>
+    <p class="faq-a">ج: تُحفظ الإطارات كملفات JPEG بجودة 85% لتحقيق توازن جيد بين الجودة وحجم الملف.</p>
+
+    <p class="faq-q">س: هل يمكنني استخراج إطارات من مقاطع فيديو طويلة جداً؟</p>
+    <p class="faq-a">ج: نعم. استخدم شريط تمرير النطاق لتحديد قسم معين، أو استخدم فترة زمنية أكبر لتقليل العدد الإجمالي للإطارات.</p>
+
+    <p class="faq-q">س: التطبيق يستخدم مساحة تخزين كبيرة. كيف أحرر المساحة؟</p>
+    <p class="faq-a">ج: انتقل إلى السجل، اسحب لليسار على جلسة واحذفها. سيؤدي ذلك إلى إزالة جميع صور الإطارات المرتبطة.</p>
+
+    <h2>متطلبات النظام</h2>
+    <div class="card">
+      <ul>
+        <li>iOS 17.0 أو أحدث</li>
+        <li>iPhone أو iPad</li>
+        <li>لا يلزم اتصال بالإنترنت</li>
+      </ul>
+    </div>
+
+    <h2>اتصل بنا</h2>
+    <div class="contact-box">
+      <p>إذا كانت لديك أسئلة أو ملاحظات أو تحتاج إلى مساعدة، يرجى التواصل معنا على:</p>
+      <p style="margin-top: 12px;"><a href="mailto:support@framecutter.app">support@framecutter.app</a></p>
+    </div>
+  </div>
+
+  <div class="footer">
+    &copy; 2026 Frame Cutter. All rights reserved.
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Frame Cutter - Privacy Policy</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #0E0E0E; color: #E0E0E0; font-family: -apple-system, 'Inter', 'Helvetica Neue', sans-serif; line-height: 1.7; }
+.container { max-width: 720px; margin: 0 auto; padding: 24px 20px 60px; }
+.lang-switch { display: flex; justify-content: flex-end; gap: 8px; padding: 16px 0; flex-wrap: wrap; }
+.lang-btn { background: #1A1A1A; border: 1px solid #333; border-radius: 8px; padding: 6px 14px; color: #888; font-size: 13px; cursor: pointer; text-decoration: none; }
+.lang-btn.active { border-color: #CAFD00; color: #CAFD00; background: rgba(202,253,0,0.08); }
+.logo { text-align: center; padding: 32px 0 24px; }
+.logo-icon { display: inline-flex; align-items: center; justify-content: center; width: 56px; height: 56px; border-radius: 14px; background: linear-gradient(135deg, #CAFD00, #8BC34A); margin-bottom: 12px; font-size: 28px; }
+.logo h1 { font-size: 28px; font-weight: 800; color: #CAFD00; letter-spacing: 2px; }
+.logo p { font-size: 13px; color: #666; letter-spacing: 4px; margin-top: 4px; }
+.badge { display: inline-block; background: rgba(202,253,0,0.12); color: #CAFD00; font-size: 11px; padding: 4px 12px; border-radius: 20px; margin-top: 8px; }
+h2 { font-size: 20px; color: #CAFD00; margin: 36px 0 12px; padding-bottom: 8px; border-bottom: 1px solid #222; }
+h3 { font-size: 16px; color: #E0E0E0; margin: 20px 0 8px; }
+p, li { font-size: 14px; color: #BBB; margin-bottom: 8px; }
+ul { padding-left: 20px; }
+li { margin-bottom: 6px; }
+.card { background: #1A1A1A; border-radius: 12px; padding: 20px; margin: 16px 0; }
+.highlight { background: rgba(202,253,0,0.06); border-left: 3px solid #CAFD00; padding: 16px 20px; border-radius: 0 12px 12px 0; margin: 16px 0; }
+.highlight p { color: #CAFD00; font-weight: 500; margin: 0; }
+a { color: #CAFD00; text-decoration: none; }
+a:hover { text-decoration: underline; }
+.contact-box { background: #1A1A1A; border: 1px solid #333; border-radius: 12px; padding: 24px; text-align: center; margin: 24px 0; }
+.contact-box p { color: #999; }
+.footer { text-align: center; padding: 32px 0; color: #444; font-size: 12px; border-top: 1px solid #1A1A1A; margin-top: 40px; }
+.date { text-align: center; color: #555; font-size: 12px; margin-top: 8px; }
+.section { display: none; }
+.section.active { display: block; }
+table { width: 100%; border-collapse: collapse; margin: 12px 0; }
+th, td { text-align: left; padding: 10px 12px; font-size: 13px; border-bottom: 1px solid #222; }
+th { color: #CAFD00; font-weight: 600; background: #1A1A1A; }
+td { color: #BBB; }
+[dir="rtl"] ul { padding-left: 0; padding-right: 20px; }
+[dir="rtl"] .highlight { border-left: none; border-right: 3px solid #CAFD00; border-radius: 12px 0 0 12px; }
+[dir="rtl"] th, [dir="rtl"] td { text-align: right; }
+[dir="rtl"] .contact-box { direction: rtl; }
+</style>
+<script>
+function switchLang(lang) {
+  document.querySelectorAll('.section').forEach(function(el) { el.classList.remove('active'); });
+  document.querySelectorAll('.lang-btn').forEach(function(el) { el.classList.remove('active'); });
+  document.querySelectorAll('.section.' + CSS.escape(lang)).forEach(function(el) { el.classList.add('active'); });
+  var btn = document.querySelector('.lang-btn[data-lang="' + lang + '"]');
+  if (btn) btn.classList.add('active');
+  if (lang === 'ar') {
+    document.documentElement.setAttribute('dir', 'rtl');
+  } else {
+    document.documentElement.removeAttribute('dir');
+  }
+  var langMap = { 'en': 'en', 'ja': 'ja', 'zh-Hans': 'zh-Hans', 'zh-Hant': 'zh-Hant', 'ko': 'ko', 'es': 'es', 'fr': 'fr', 'de': 'de', 'pt-BR': 'pt-BR', 'hi': 'hi', 'ar': 'ar' };
+  document.documentElement.lang = langMap[lang] || 'en';
+}
+document.addEventListener('DOMContentLoaded', function() {
+  var raw = (navigator.language || navigator.userLanguage || 'en');
+  var lang = 'en';
+  if (raw === 'zh-Hans' || raw === 'zh-CN' || raw.startsWith('zh-Hans')) lang = 'zh-Hans';
+  else if (raw === 'zh-Hant' || raw === 'zh-TW' || raw === 'zh-HK' || raw.startsWith('zh-Hant')) lang = 'zh-Hant';
+  else if (raw === 'pt-BR' || raw === 'pt-br') lang = 'pt-BR';
+  else {
+    var short = raw.substring(0, 2);
+    var map = { 'ja': 'ja', 'ko': 'ko', 'es': 'es', 'fr': 'fr', 'de': 'de', 'pt': 'pt-BR', 'hi': 'hi', 'ar': 'ar', 'zh': 'zh-Hans' };
+    if (map[short]) lang = map[short];
+  }
+  switchLang(lang);
+});
+</script>
+</head>
+<body>
+
+<div class="container">
+  <div class="lang-switch">
+    <a class="lang-btn" data-lang="en" onclick="switchLang('en')">English</a>
+    <a class="lang-btn" data-lang="ja" onclick="switchLang('ja')">日本語</a>
+    <a class="lang-btn" data-lang="zh-Hans" onclick="switchLang('zh-Hans')">简体中文</a>
+    <a class="lang-btn" data-lang="zh-Hant" onclick="switchLang('zh-Hant')">繁體中文</a>
+    <a class="lang-btn" data-lang="ko" onclick="switchLang('ko')">한국어</a>
+    <a class="lang-btn" data-lang="es" onclick="switchLang('es')">Español</a>
+    <a class="lang-btn" data-lang="fr" onclick="switchLang('fr')">Français</a>
+    <a class="lang-btn" data-lang="de" onclick="switchLang('de')">Deutsch</a>
+    <a class="lang-btn" data-lang="pt-BR" onclick="switchLang('pt-BR')">Português</a>
+    <a class="lang-btn" data-lang="hi" onclick="switchLang('hi')">हिन्दी</a>
+    <a class="lang-btn" data-lang="ar" onclick="switchLang('ar')">العربية</a>
+  </div>
+
+  <div class="logo">
+    <div class="logo-icon">🎬</div>
+    <h1>FRAME CUTTER</h1>
+    <p>VIDEO TO PHOTO</p>
+    <span class="badge">Privacy Policy</span>
+  </div>
+
+  <!-- ==================== ENGLISH ==================== -->
+  <div class="section en">
+    <p class="date">Last updated: March 23, 2026</p>
+
+    <div class="highlight">
+      <p>Frame Cutter does not collect, store, or transmit any personal data. All processing happens entirely on your device.</p>
+    </div>
+
+    <h2>1. Overview</h2>
+    <p>Frame Cutter ("the App") is a video frame extraction tool developed for iOS. This Privacy Policy explains how the App handles your information. We are committed to protecting your privacy.</p>
+
+    <h2>2. Data Collection</h2>
+    <p><strong>We do not collect any data.</strong> The App operates completely offline and does not communicate with any external servers.</p>
+
+    <div class="card">
+      <table>
+        <tr><th>Data Type</th><th>Collected?</th><th>Details</th></tr>
+        <tr><td>Personal Information</td><td>No</td><td>No names, emails, or identifiers are collected</td></tr>
+        <tr><td>Usage Analytics</td><td>No</td><td>No tracking, analytics, or telemetry</td></tr>
+        <tr><td>Location Data</td><td>No</td><td>No GPS or location access</td></tr>
+        <tr><td>Advertising Data</td><td>No</td><td>No ads, no ad tracking</td></tr>
+        <tr><td>Device Information</td><td>No</td><td>No device IDs or fingerprinting</td></tr>
+        <tr><td>Network Activity</td><td>No</td><td>No internet requests are made</td></tr>
+      </table>
+    </div>
+
+    <h2>3. Device Permissions</h2>
+    <p>The App requests the following permissions solely for its core functionality:</p>
+
+    <h3>Camera</h3>
+    <p>Used exclusively to record videos within the App. Video data never leaves your device. This permission is optional — you can use the App by importing existing videos.</p>
+
+    <h3>Photo Library</h3>
+    <p>Used to import videos from your Camera Roll and to save extracted frame images. The App only accesses items you explicitly select.</p>
+
+    <h2>4. Data Storage</h2>
+    <p>All data created by the App is stored locally on your device:</p>
+    <ul>
+      <li><strong>Extracted frames</strong> — Saved as JPEG files in the App's Documents directory</li>
+      <li><strong>Session metadata</strong> — Stored as a JSON file in the App's Documents directory</li>
+      <li><strong>Thumbnails</strong> — Generated and stored locally for display purposes</li>
+    </ul>
+    <p>You can access these files through the iOS Files app or iTunes File Sharing. Deleting the App will remove all stored data.</p>
+
+    <h2>5. Third-Party Services</h2>
+    <p>The App does not use any third-party services, SDKs, analytics tools, or advertising frameworks. There are no third-party dependencies that collect data.</p>
+
+    <h2>6. Children's Privacy</h2>
+    <p>The App does not collect any personal information from anyone, including children under 13. The App is safe for users of all ages.</p>
+
+    <h2>7. Data Sharing</h2>
+    <p>We do not share any data with third parties because we do not collect any data. When you use the iOS share sheet to share frames, the sharing is handled entirely by iOS and the destination app you choose.</p>
+
+    <h2>8. Security</h2>
+    <p>Since all data remains on your device and no network communication occurs, your data is protected by your device's built-in security features (passcode, Face ID, Touch ID, encryption).</p>
+
+    <h2>9. Changes to This Policy</h2>
+    <p>We may update this Privacy Policy from time to time. Any changes will be posted on this page with an updated revision date. Continued use of the App after changes constitutes acceptance of the updated policy.</p>
+
+    <h2>10. Contact</h2>
+    <div class="contact-box">
+      <p>If you have any questions about this Privacy Policy, please contact us at:</p>
+      <p style="margin-top: 12px;"><a href="mailto:privacy@framecutter.app">privacy@framecutter.app</a></p>
+    </div>
+  </div>
+
+  <!-- ==================== JAPANESE ==================== -->
+  <div class="section ja">
+    <p class="date">最終更新日: 2026年3月23日</p>
+
+    <div class="highlight">
+      <p>Frame Cutterは個人データの収集、保存、送信を一切行いません。すべての処理はお使いの端末上で完結します。</p>
+    </div>
+
+    <h2>1. 概要</h2>
+    <p>Frame Cutter（以下「本アプリ」）は、iOS向けの動画フレーム抽出ツールです。本プライバシーポリシーは、本アプリがお客様の情報をどのように取り扱うかについて説明します。私たちはお客様のプライバシー保護に努めています。</p>
+
+    <h2>2. データの収集</h2>
+    <p><strong>私たちはいかなるデータも収集しません。</strong>本アプリは完全にオフラインで動作し、外部サーバーとの通信は一切行いません。</p>
+
+    <div class="card">
+      <table>
+        <tr><th>データの種類</th><th>収集</th><th>詳細</th></tr>
+        <tr><td>個人情報</td><td>なし</td><td>氏名、メールアドレス、識別子の収集なし</td></tr>
+        <tr><td>利用分析</td><td>なし</td><td>トラッキング、分析、テレメトリなし</td></tr>
+        <tr><td>位置情報</td><td>なし</td><td>GPS・位置情報へのアクセスなし</td></tr>
+        <tr><td>広告データ</td><td>なし</td><td>広告なし、広告トラッキングなし</td></tr>
+        <tr><td>端末情報</td><td>なし</td><td>デバイスIDやフィンガープリントの取得なし</td></tr>
+        <tr><td>ネットワーク通信</td><td>なし</td><td>インターネットリクエストの送信なし</td></tr>
+      </table>
+    </div>
+
+    <h2>3. 端末の権限</h2>
+    <p>本アプリは、コア機能の実現のためにのみ以下の権限を要求します：</p>
+
+    <h3>カメラ</h3>
+    <p>アプリ内で動画を録画するためにのみ使用します。動画データが端末外に送信されることはありません。この権限はオプションです — 既存の動画をインポートすることで、カメラ権限なしでも利用できます。</p>
+
+    <h3>写真ライブラリ</h3>
+    <p>カメラロールからの動画インポートと、抽出したフレーム画像の保存に使用します。お客様が明示的に選択したアイテムにのみアクセスします。</p>
+
+    <h2>4. データの保存</h2>
+    <p>本アプリが作成するすべてのデータは、端末内にローカル保存されます：</p>
+    <ul>
+      <li><strong>抽出フレーム</strong> — アプリのDocumentsディレクトリにJPEGファイルとして保存</li>
+      <li><strong>セッションメタデータ</strong> — アプリのDocumentsディレクトリにJSONファイルとして保存</li>
+      <li><strong>サムネイル</strong> — 表示目的でローカルに生成・保存</li>
+    </ul>
+    <p>これらのファイルは、iOSのファイルアプリまたはiTunesファイル共有からアクセスできます。アプリを削除すると、すべての保存データが削除されます。</p>
+
+    <h2>5. サードパーティサービス</h2>
+    <p>本アプリは、サードパーティのサービス、SDK、分析ツール、広告フレームワークを一切使用していません。データを収集するサードパーティの依存関係はありません。</p>
+
+    <h2>6. お子様のプライバシー</h2>
+    <p>本アプリは、13歳未満のお子様を含め、いかなる方の個人情報も収集しません。すべての年齢のユーザーが安全にご利用いただけます。</p>
+
+    <h2>7. データの共有</h2>
+    <p>データを収集していないため、第三者とのデータ共有は一切ありません。iOSの共有シートを使用してフレームを共有する場合、共有処理はiOSとお客様が選択した宛先アプリによって完全に処理されます。</p>
+
+    <h2>8. セキュリティ</h2>
+    <p>すべてのデータは端末内に保存され、ネットワーク通信は行われないため、お客様のデータは端末の内蔵セキュリティ機能（パスコード、Face ID、Touch ID、暗号化）によって保護されます。</p>
+
+    <h2>9. ポリシーの変更</h2>
+    <p>本プライバシーポリシーは随時更新される場合があります。変更がある場合は、更新日とともにこのページに掲載されます。変更後も本アプリを継続してご利用いただくことで、更新されたポリシーに同意したものとみなされます。</p>
+
+    <h2>10. お問い合わせ</h2>
+    <div class="contact-box">
+      <p>本プライバシーポリシーについてご質問がある場合は、以下までご連絡ください：</p>
+      <p style="margin-top: 12px;"><a href="mailto:privacy@framecutter.app">privacy@framecutter.app</a></p>
+    </div>
+  </div>
+
+  <!-- ==================== SIMPLIFIED CHINESE ==================== -->
+  <div class="section zh-Hans">
+    <p class="date">最后更新：2026年3月23日</p>
+
+    <div class="highlight">
+      <p>Frame Cutter 不收集、存储或传输任何个人数据。所有处理完全在您的设备上进行。</p>
+    </div>
+
+    <h2>1. 概述</h2>
+    <p>Frame Cutter（以下简称"本应用"）是一款为 iOS 开发的视频帧提取工具。本隐私政策说明本应用如何处理您的信息。我们致力于保护您的隐私。</p>
+
+    <h2>2. 数据收集</h2>
+    <p><strong>我们不收集任何数据。</strong>本应用完全离线运行，不与任何外部服务器通信。</p>
+
+    <div class="card">
+      <table>
+        <tr><th>数据类型</th><th>是否收集</th><th>详情</th></tr>
+        <tr><td>个人信息</td><td>否</td><td>不收集姓名、电子邮件或标识符</td></tr>
+        <tr><td>使用分析</td><td>否</td><td>无追踪、分析或遥测</td></tr>
+        <tr><td>位置数据</td><td>否</td><td>不访问 GPS 或位置信息</td></tr>
+        <tr><td>广告数据</td><td>否</td><td>无广告，无广告追踪</td></tr>
+        <tr><td>设备信息</td><td>否</td><td>不获取设备 ID 或指纹信息</td></tr>
+        <tr><td>网络活动</td><td>否</td><td>不发送任何互联网请求</td></tr>
+      </table>
+    </div>
+
+    <h2>3. 设备权限</h2>
+    <p>本应用仅为其核心功能请求以下权限：</p>
+
+    <h3>摄像头</h3>
+    <p>仅用于在应用内录制视频。视频数据绝不会离开您的设备。此权限为可选项——您可以通过导入现有视频来使用本应用。</p>
+
+    <h3>照片库</h3>
+    <p>用于从相册导入视频以及保存提取的帧图像。本应用仅访问您明确选择的项目。</p>
+
+    <h2>4. 数据存储</h2>
+    <p>本应用创建的所有数据均存储在您的设备本地：</p>
+    <ul>
+      <li><strong>提取的帧</strong> — 以 JPEG 文件格式保存在应用的 Documents 目录中</li>
+      <li><strong>会话元数据</strong> — 以 JSON 文件格式保存在应用的 Documents 目录中</li>
+      <li><strong>缩略图</strong> — 在本地生成并存储，用于显示目的</li>
+    </ul>
+    <p>您可以通过 iOS 文件应用或 iTunes 文件共享访问这些文件。删除应用将删除所有存储的数据。</p>
+
+    <h2>5. 第三方服务</h2>
+    <p>本应用不使用任何第三方服务、SDK、分析工具或广告框架。没有收集数据的第三方依赖项。</p>
+
+    <h2>6. 儿童隐私</h2>
+    <p>本应用不收集任何人的个人信息，包括13岁以下的儿童。本应用适合所有年龄段的用户安全使用。</p>
+
+    <h2>7. 数据共享</h2>
+    <p>由于我们不收集任何数据，因此不会与第三方共享任何数据。当您使用 iOS 共享表单共享帧时，共享完全由 iOS 和您选择的目标应用处理。</p>
+
+    <h2>8. 安全性</h2>
+    <p>由于所有数据都保留在您的设备上且不进行网络通信，您的数据受到设备内置安全功能（密码、Face ID、Touch ID、加密）的保护。</p>
+
+    <h2>9. 政策变更</h2>
+    <p>我们可能会不时更新本隐私政策。任何变更将以更新的修订日期发布在此页面上。在变更后继续使用本应用即表示接受更新后的政策。</p>
+
+    <h2>10. 联系方式</h2>
+    <div class="contact-box">
+      <p>如果您对本隐私政策有任何疑问，请通过以下方式联系我们：</p>
+      <p style="margin-top: 12px;"><a href="mailto:privacy@framecutter.app">privacy@framecutter.app</a></p>
+    </div>
+  </div>
+
+  <!-- ==================== TRADITIONAL CHINESE ==================== -->
+  <div class="section zh-Hant">
+    <p class="date">最後更新：2026年3月23日</p>
+
+    <div class="highlight">
+      <p>Frame Cutter 不收集、儲存或傳輸任何個人資料。所有處理完全在您的裝置上進行。</p>
+    </div>
+
+    <h2>1. 概述</h2>
+    <p>Frame Cutter（以下簡稱「本應用程式」）是一款為 iOS 開發的影片幀擷取工具。本隱私政策說明本應用程式如何處理您的資訊。我們致力於保護您的隱私。</p>
+
+    <h2>2. 資料收集</h2>
+    <p><strong>我們不收集任何資料。</strong>本應用程式完全離線運作，不與任何外部伺服器通訊。</p>
+
+    <div class="card">
+      <table>
+        <tr><th>資料類型</th><th>是否收集</th><th>詳情</th></tr>
+        <tr><td>個人資訊</td><td>否</td><td>不收集姓名、電子郵件或識別碼</td></tr>
+        <tr><td>使用分析</td><td>否</td><td>無追蹤、分析或遙測</td></tr>
+        <tr><td>位置資料</td><td>否</td><td>不存取 GPS 或位置資訊</td></tr>
+        <tr><td>廣告資料</td><td>否</td><td>無廣告，無廣告追蹤</td></tr>
+        <tr><td>裝置資訊</td><td>否</td><td>不取得裝置 ID 或指紋資訊</td></tr>
+        <tr><td>網路活動</td><td>否</td><td>不發送任何網路請求</td></tr>
+      </table>
+    </div>
+
+    <h2>3. 裝置權限</h2>
+    <p>本應用程式僅為其核心功能請求以下權限：</p>
+
+    <h3>相機</h3>
+    <p>僅用於在應用程式內錄製影片。影片資料絕不會離開您的裝置。此權限為選擇性——您可以透過匯入現有影片來使用本應用程式。</p>
+
+    <h3>照片圖庫</h3>
+    <p>用於從相簿匯入影片以及儲存擷取的幀影像。本應用程式僅存取您明確選擇的項目。</p>
+
+    <h2>4. 資料儲存</h2>
+    <p>本應用程式建立的所有資料均儲存在您的裝置本機：</p>
+    <ul>
+      <li><strong>擷取的幀</strong> — 以 JPEG 檔案格式儲存在應用程式的 Documents 目錄中</li>
+      <li><strong>工作階段中繼資料</strong> — 以 JSON 檔案格式儲存在應用程式的 Documents 目錄中</li>
+      <li><strong>縮圖</strong> — 在本機生成並儲存，用於顯示目的</li>
+    </ul>
+    <p>您可以透過 iOS 檔案應用程式或 iTunes 檔案共享存取這些檔案。刪除應用程式將刪除所有儲存的資料。</p>
+
+    <h2>5. 第三方服務</h2>
+    <p>本應用程式不使用任何第三方服務、SDK、分析工具或廣告框架。沒有收集資料的第三方相依性。</p>
+
+    <h2>6. 兒童隱私</h2>
+    <p>本應用程式不收集任何人的個人資訊，包括13歲以下的兒童。本應用程式適合所有年齡層的使用者安全使用。</p>
+
+    <h2>7. 資料共享</h2>
+    <p>由於我們不收集任何資料，因此不會與第三方共享任何資料。當您使用 iOS 共享表單共享幀時，共享完全由 iOS 和您選擇的目標應用程式處理。</p>
+
+    <h2>8. 安全性</h2>
+    <p>由於所有資料都保留在您的裝置上且不進行網路通訊，您的資料受到裝置內建安全功能（密碼、Face ID、Touch ID、加密）的保護。</p>
+
+    <h2>9. 政策變更</h2>
+    <p>我們可能會不時更新本隱私政策。任何變更將以更新的修訂日期發佈在此頁面上。在變更後繼續使用本應用程式即表示接受更新後的政策。</p>
+
+    <h2>10. 聯絡方式</h2>
+    <div class="contact-box">
+      <p>如果您對本隱私政策有任何疑問，請透過以下方式聯絡我們：</p>
+      <p style="margin-top: 12px;"><a href="mailto:privacy@framecutter.app">privacy@framecutter.app</a></p>
+    </div>
+  </div>
+
+  <!-- ==================== KOREAN ==================== -->
+  <div class="section ko">
+    <p class="date">최종 업데이트: 2026년 3월 23일</p>
+
+    <div class="highlight">
+      <p>Frame Cutter는 어떠한 개인 데이터도 수집, 저장 또는 전송하지 않습니다. 모든 처리는 전적으로 사용자의 기기에서 이루어집니다.</p>
+    </div>
+
+    <h2>1. 개요</h2>
+    <p>Frame Cutter(이하 "본 앱")는 iOS용으로 개발된 동영상 프레임 추출 도구입니다. 본 개인정보 처리방침은 본 앱이 사용자의 정보를 어떻게 처리하는지 설명합니다. 우리는 사용자의 개인정보 보호에 최선을 다하고 있습니다.</p>
+
+    <h2>2. 데이터 수집</h2>
+    <p><strong>우리는 어떠한 데이터도 수집하지 않습니다.</strong> 본 앱은 완전히 오프라인으로 작동하며 외부 서버와 통신하지 않습니다.</p>
+
+    <div class="card">
+      <table>
+        <tr><th>데이터 유형</th><th>수집 여부</th><th>세부사항</th></tr>
+        <tr><td>개인 정보</td><td>아니오</td><td>이름, 이메일, 식별자를 수집하지 않음</td></tr>
+        <tr><td>사용 분석</td><td>아니오</td><td>추적, 분석, 원격 측정 없음</td></tr>
+        <tr><td>위치 데이터</td><td>아니오</td><td>GPS 또는 위치 접근 없음</td></tr>
+        <tr><td>광고 데이터</td><td>아니오</td><td>광고 없음, 광고 추적 없음</td></tr>
+        <tr><td>기기 정보</td><td>아니오</td><td>기기 ID 또는 핑거프린팅 없음</td></tr>
+        <tr><td>네트워크 활동</td><td>아니오</td><td>인터넷 요청을 하지 않음</td></tr>
+      </table>
+    </div>
+
+    <h2>3. 기기 권한</h2>
+    <p>본 앱은 핵심 기능을 위해서만 다음 권한을 요청합니다:</p>
+
+    <h3>카메라</h3>
+    <p>앱 내에서 동영상을 촬영하기 위해서만 사용됩니다. 동영상 데이터는 기기를 벗어나지 않습니다. 이 권한은 선택 사항입니다 — 기존 동영상을 가져와서 앱을 사용할 수 있습니다.</p>
+
+    <h3>사진 보관함</h3>
+    <p>카메라 롤에서 동영상을 가져오고 추출된 프레임 이미지를 저장하는 데 사용됩니다. 본 앱은 사용자가 명시적으로 선택한 항목에만 접근합니다.</p>
+
+    <h2>4. 데이터 저장</h2>
+    <p>본 앱이 생성하는 모든 데이터는 기기에 로컬로 저장됩니다:</p>
+    <ul>
+      <li><strong>추출된 프레임</strong> — 앱의 Documents 디렉토리에 JPEG 파일로 저장</li>
+      <li><strong>세션 메타데이터</strong> — 앱의 Documents 디렉토리에 JSON 파일로 저장</li>
+      <li><strong>썸네일</strong> — 표시 목적으로 로컬에서 생성 및 저장</li>
+    </ul>
+    <p>이 파일들은 iOS 파일 앱 또는 iTunes 파일 공유를 통해 접근할 수 있습니다. 앱을 삭제하면 모든 저장된 데이터가 삭제됩니다.</p>
+
+    <h2>5. 제3자 서비스</h2>
+    <p>본 앱은 제3자 서비스, SDK, 분석 도구 또는 광고 프레임워크를 사용하지 않습니다. 데이터를 수집하는 제3자 종속성이 없습니다.</p>
+
+    <h2>6. 아동 개인정보</h2>
+    <p>본 앱은 13세 미만 아동을 포함하여 누구의 개인 정보도 수집하지 않습니다. 본 앱은 모든 연령대의 사용자가 안전하게 사용할 수 있습니다.</p>
+
+    <h2>7. 데이터 공유</h2>
+    <p>우리는 데이터를 수집하지 않으므로 제3자와 데이터를 공유하지 않습니다. iOS 공유 시트를 사용하여 프레임을 공유할 때, 공유는 iOS와 사용자가 선택한 대상 앱에 의해 전적으로 처리됩니다.</p>
+
+    <h2>8. 보안</h2>
+    <p>모든 데이터가 기기에 남아 있고 네트워크 통신이 발생하지 않으므로, 사용자의 데이터는 기기의 내장 보안 기능(암호, Face ID, Touch ID, 암호화)에 의해 보호됩니다.</p>
+
+    <h2>9. 정책 변경</h2>
+    <p>본 개인정보 처리방침은 수시로 업데이트될 수 있습니다. 변경 사항은 업데이트된 수정 날짜와 함께 이 페이지에 게시됩니다. 변경 후 본 앱을 계속 사용하면 업데이트된 정책에 동의한 것으로 간주됩니다.</p>
+
+    <h2>10. 문의</h2>
+    <div class="contact-box">
+      <p>본 개인정보 처리방침에 대해 질문이 있으시면 아래로 연락해 주세요:</p>
+      <p style="margin-top: 12px;"><a href="mailto:privacy@framecutter.app">privacy@framecutter.app</a></p>
+    </div>
+  </div>
+
+  <!-- ==================== SPANISH ==================== -->
+  <div class="section es">
+    <p class="date">Última actualización: 23 de marzo de 2026</p>
+
+    <div class="highlight">
+      <p>Frame Cutter no recopila, almacena ni transmite ningún dato personal. Todo el procesamiento se realiza completamente en tu dispositivo.</p>
+    </div>
+
+    <h2>1. Descripción general</h2>
+    <p>Frame Cutter ("la App") es una herramienta de extracción de fotogramas de vídeo desarrollada para iOS. Esta Política de Privacidad explica cómo la App maneja tu información. Estamos comprometidos con la protección de tu privacidad.</p>
+
+    <h2>2. Recopilación de datos</h2>
+    <p><strong>No recopilamos ningún dato.</strong> La App funciona completamente sin conexión y no se comunica con ningún servidor externo.</p>
+
+    <div class="card">
+      <table>
+        <tr><th>Tipo de dato</th><th>¿Se recopila?</th><th>Detalles</th></tr>
+        <tr><td>Información personal</td><td>No</td><td>No se recopilan nombres, correos ni identificadores</td></tr>
+        <tr><td>Análisis de uso</td><td>No</td><td>Sin seguimiento, análisis ni telemetría</td></tr>
+        <tr><td>Datos de ubicación</td><td>No</td><td>Sin acceso a GPS ni ubicación</td></tr>
+        <tr><td>Datos publicitarios</td><td>No</td><td>Sin anuncios ni seguimiento publicitario</td></tr>
+        <tr><td>Información del dispositivo</td><td>No</td><td>Sin IDs de dispositivo ni huella digital</td></tr>
+        <tr><td>Actividad de red</td><td>No</td><td>No se realizan solicitudes de Internet</td></tr>
+      </table>
+    </div>
+
+    <h2>3. Permisos del dispositivo</h2>
+    <p>La App solicita los siguientes permisos únicamente para su funcionalidad principal:</p>
+
+    <h3>Cámara</h3>
+    <p>Se utiliza exclusivamente para grabar vídeos dentro de la App. Los datos de vídeo nunca salen de tu dispositivo. Este permiso es opcional — puedes usar la App importando vídeos existentes.</p>
+
+    <h3>Biblioteca de fotos</h3>
+    <p>Se utiliza para importar vídeos desde tu Carrete y guardar las imágenes de fotogramas extraídos. La App solo accede a los elementos que seleccionas explícitamente.</p>
+
+    <h2>4. Almacenamiento de datos</h2>
+    <p>Todos los datos creados por la App se almacenan localmente en tu dispositivo:</p>
+    <ul>
+      <li><strong>Fotogramas extraídos</strong> — Guardados como archivos JPEG en el directorio Documents de la App</li>
+      <li><strong>Metadatos de sesión</strong> — Almacenados como archivo JSON en el directorio Documents de la App</li>
+      <li><strong>Miniaturas</strong> — Generadas y almacenadas localmente para visualización</li>
+    </ul>
+    <p>Puedes acceder a estos archivos a través de la app Archivos de iOS o iTunes File Sharing. Eliminar la App eliminará todos los datos almacenados.</p>
+
+    <h2>5. Servicios de terceros</h2>
+    <p>La App no utiliza servicios de terceros, SDKs, herramientas de análisis ni frameworks publicitarios. No existen dependencias de terceros que recopilen datos.</p>
+
+    <h2>6. Privacidad de los niños</h2>
+    <p>La App no recopila información personal de nadie, incluidos los menores de 13 años. La App es segura para usuarios de todas las edades.</p>
+
+    <h2>7. Compartición de datos</h2>
+    <p>No compartimos datos con terceros porque no recopilamos ningún dato. Cuando usas la hoja de compartir de iOS para compartir fotogramas, el proceso es manejado completamente por iOS y la app de destino que elijas.</p>
+
+    <h2>8. Seguridad</h2>
+    <p>Dado que todos los datos permanecen en tu dispositivo y no se produce comunicación de red, tus datos están protegidos por las funciones de seguridad integradas de tu dispositivo (código de acceso, Face ID, Touch ID, cifrado).</p>
+
+    <h2>9. Cambios en esta política</h2>
+    <p>Podemos actualizar esta Política de Privacidad de vez en cuando. Cualquier cambio se publicará en esta página con una fecha de revisión actualizada. El uso continuado de la App después de los cambios constituye la aceptación de la política actualizada.</p>
+
+    <h2>10. Contacto</h2>
+    <div class="contact-box">
+      <p>Si tienes alguna pregunta sobre esta Política de Privacidad, contáctanos en:</p>
+      <p style="margin-top: 12px;"><a href="mailto:privacy@framecutter.app">privacy@framecutter.app</a></p>
+    </div>
+  </div>
+
+  <!-- ==================== FRENCH ==================== -->
+  <div class="section fr">
+    <p class="date">Dernière mise à jour : 23 mars 2026</p>
+
+    <div class="highlight">
+      <p>Frame Cutter ne collecte, ne stocke ni ne transmet aucune donnée personnelle. Tout le traitement se fait entièrement sur votre appareil.</p>
+    </div>
+
+    <h2>1. Aperçu</h2>
+    <p>Frame Cutter (« l'Application ») est un outil d'extraction d'images vidéo développé pour iOS. Cette Politique de Confidentialité explique comment l'Application traite vos informations. Nous nous engageons à protéger votre vie privée.</p>
+
+    <h2>2. Collecte de données</h2>
+    <p><strong>Nous ne collectons aucune donnée.</strong> L'Application fonctionne entièrement hors ligne et ne communique avec aucun serveur externe.</p>
+
+    <div class="card">
+      <table>
+        <tr><th>Type de données</th><th>Collectées ?</th><th>Détails</th></tr>
+        <tr><td>Informations personnelles</td><td>Non</td><td>Aucun nom, e-mail ou identifiant n'est collecté</td></tr>
+        <tr><td>Analyses d'utilisation</td><td>Non</td><td>Pas de suivi, d'analyse ou de télémétrie</td></tr>
+        <tr><td>Données de localisation</td><td>Non</td><td>Pas d'accès GPS ou de localisation</td></tr>
+        <tr><td>Données publicitaires</td><td>Non</td><td>Pas de publicité ni de suivi publicitaire</td></tr>
+        <tr><td>Informations sur l'appareil</td><td>Non</td><td>Pas d'identifiants d'appareil ni d'empreinte digitale</td></tr>
+        <tr><td>Activité réseau</td><td>Non</td><td>Aucune requête Internet n'est effectuée</td></tr>
+      </table>
+    </div>
+
+    <h2>3. Autorisations de l'appareil</h2>
+    <p>L'Application demande les autorisations suivantes uniquement pour ses fonctionnalités principales :</p>
+
+    <h3>Caméra</h3>
+    <p>Utilisée exclusivement pour enregistrer des vidéos dans l'Application. Les données vidéo ne quittent jamais votre appareil. Cette autorisation est facultative — vous pouvez utiliser l'Application en important des vidéos existantes.</p>
+
+    <h3>Photothèque</h3>
+    <p>Utilisée pour importer des vidéos depuis votre Pellicule et enregistrer les images extraites. L'Application n'accède qu'aux éléments que vous sélectionnez explicitement.</p>
+
+    <h2>4. Stockage des données</h2>
+    <p>Toutes les données créées par l'Application sont stockées localement sur votre appareil :</p>
+    <ul>
+      <li><strong>Images extraites</strong> — Enregistrées en fichiers JPEG dans le répertoire Documents de l'Application</li>
+      <li><strong>Métadonnées de session</strong> — Stockées en fichier JSON dans le répertoire Documents de l'Application</li>
+      <li><strong>Miniatures</strong> — Générées et stockées localement pour l'affichage</li>
+    </ul>
+    <p>Vous pouvez accéder à ces fichiers via l'app Fichiers d'iOS ou le partage de fichiers iTunes. La suppression de l'Application supprimera toutes les données stockées.</p>
+
+    <h2>5. Services tiers</h2>
+    <p>L'Application n'utilise aucun service tiers, SDK, outil d'analyse ou framework publicitaire. Il n'y a aucune dépendance tierce qui collecte des données.</p>
+
+    <h2>6. Protection des mineurs</h2>
+    <p>L'Application ne collecte aucune information personnelle de quiconque, y compris les enfants de moins de 13 ans. L'Application est sûre pour les utilisateurs de tous âges.</p>
+
+    <h2>7. Partage de données</h2>
+    <p>Nous ne partageons aucune donnée avec des tiers car nous ne collectons aucune donnée. Lorsque vous utilisez la feuille de partage iOS pour partager des images, le partage est entièrement géré par iOS et l'application de destination que vous choisissez.</p>
+
+    <h2>8. Sécurité</h2>
+    <p>Étant donné que toutes les données restent sur votre appareil et qu'aucune communication réseau n'a lieu, vos données sont protégées par les fonctionnalités de sécurité intégrées de votre appareil (code d'accès, Face ID, Touch ID, chiffrement).</p>
+
+    <h2>9. Modifications de cette politique</h2>
+    <p>Nous pouvons mettre à jour cette Politique de Confidentialité de temps en temps. Tout changement sera publié sur cette page avec une date de révision mise à jour. L'utilisation continue de l'Application après les modifications constitue une acceptation de la politique mise à jour.</p>
+
+    <h2>10. Contact</h2>
+    <div class="contact-box">
+      <p>Si vous avez des questions concernant cette Politique de Confidentialité, contactez-nous à :</p>
+      <p style="margin-top: 12px;"><a href="mailto:privacy@framecutter.app">privacy@framecutter.app</a></p>
+    </div>
+  </div>
+
+  <!-- ==================== GERMAN ==================== -->
+  <div class="section de">
+    <p class="date">Letzte Aktualisierung: 23. März 2026</p>
+
+    <div class="highlight">
+      <p>Frame Cutter sammelt, speichert oder überträgt keine personenbezogenen Daten. Die gesamte Verarbeitung erfolgt vollständig auf Ihrem Gerät.</p>
+    </div>
+
+    <h2>1. Überblick</h2>
+    <p>Frame Cutter („die App") ist ein Videoframe-Extraktionstool, das für iOS entwickelt wurde. Diese Datenschutzrichtlinie erklärt, wie die App mit Ihren Informationen umgeht. Wir sind dem Schutz Ihrer Privatsphäre verpflichtet.</p>
+
+    <h2>2. Datenerhebung</h2>
+    <p><strong>Wir erheben keinerlei Daten.</strong> Die App funktioniert vollständig offline und kommuniziert nicht mit externen Servern.</p>
+
+    <div class="card">
+      <table>
+        <tr><th>Datentyp</th><th>Erhoben?</th><th>Details</th></tr>
+        <tr><td>Persönliche Informationen</td><td>Nein</td><td>Keine Namen, E-Mails oder Identifikatoren werden erhoben</td></tr>
+        <tr><td>Nutzungsanalysen</td><td>Nein</td><td>Kein Tracking, keine Analysen oder Telemetrie</td></tr>
+        <tr><td>Standortdaten</td><td>Nein</td><td>Kein GPS- oder Standortzugriff</td></tr>
+        <tr><td>Werbedaten</td><td>Nein</td><td>Keine Werbung, kein Werbetracking</td></tr>
+        <tr><td>Geräteinformationen</td><td>Nein</td><td>Keine Geräte-IDs oder Fingerprinting</td></tr>
+        <tr><td>Netzwerkaktivität</td><td>Nein</td><td>Es werden keine Internetanfragen gestellt</td></tr>
+      </table>
+    </div>
+
+    <h2>3. Geräteberechtigungen</h2>
+    <p>Die App fordert die folgenden Berechtigungen ausschließlich für ihre Kernfunktionalität an:</p>
+
+    <h3>Kamera</h3>
+    <p>Wird ausschließlich zum Aufnehmen von Videos innerhalb der App verwendet. Videodaten verlassen niemals Ihr Gerät. Diese Berechtigung ist optional — Sie können die App nutzen, indem Sie vorhandene Videos importieren.</p>
+
+    <h3>Fotomediathek</h3>
+    <p>Wird zum Importieren von Videos aus Ihrer Kamerarolle und zum Speichern extrahierter Einzelbilder verwendet. Die App greift nur auf Elemente zu, die Sie ausdrücklich auswählen.</p>
+
+    <h2>4. Datenspeicherung</h2>
+    <p>Alle von der App erstellten Daten werden lokal auf Ihrem Gerät gespeichert:</p>
+    <ul>
+      <li><strong>Extrahierte Einzelbilder</strong> — Als JPEG-Dateien im Documents-Verzeichnis der App gespeichert</li>
+      <li><strong>Sitzungsmetadaten</strong> — Als JSON-Datei im Documents-Verzeichnis der App gespeichert</li>
+      <li><strong>Miniaturansichten</strong> — Lokal generiert und gespeichert für Anzeigezwecke</li>
+    </ul>
+    <p>Sie können auf diese Dateien über die iOS-Dateien-App oder iTunes-Dateifreigabe zugreifen. Das Löschen der App entfernt alle gespeicherten Daten.</p>
+
+    <h2>5. Drittanbieterdienste</h2>
+    <p>Die App verwendet keine Drittanbieterdienste, SDKs, Analysetools oder Werbeframeworks. Es gibt keine Drittanbieterabhängigkeiten, die Daten sammeln.</p>
+
+    <h2>6. Datenschutz für Kinder</h2>
+    <p>Die App sammelt keine persönlichen Informationen von niemandem, einschließlich Kindern unter 13 Jahren. Die App ist sicher für Benutzer aller Altersgruppen.</p>
+
+    <h2>7. Datenweitergabe</h2>
+    <p>Wir teilen keine Daten mit Dritten, da wir keine Daten erheben. Wenn Sie das iOS-Share-Sheet verwenden, um Einzelbilder zu teilen, wird das Teilen vollständig von iOS und der von Ihnen gewählten Ziel-App verwaltet.</p>
+
+    <h2>8. Sicherheit</h2>
+    <p>Da alle Daten auf Ihrem Gerät verbleiben und keine Netzwerkkommunikation stattfindet, sind Ihre Daten durch die integrierten Sicherheitsfunktionen Ihres Geräts geschützt (Passcode, Face ID, Touch ID, Verschlüsselung).</p>
+
+    <h2>9. Änderungen dieser Richtlinie</h2>
+    <p>Wir können diese Datenschutzrichtlinie von Zeit zu Zeit aktualisieren. Änderungen werden auf dieser Seite mit einem aktualisierten Überarbeitungsdatum veröffentlicht. Die fortgesetzte Nutzung der App nach Änderungen gilt als Akzeptanz der aktualisierten Richtlinie.</p>
+
+    <h2>10. Kontakt</h2>
+    <div class="contact-box">
+      <p>Wenn Sie Fragen zu dieser Datenschutzrichtlinie haben, kontaktieren Sie uns unter:</p>
+      <p style="margin-top: 12px;"><a href="mailto:privacy@framecutter.app">privacy@framecutter.app</a></p>
+    </div>
+  </div>
+
+  <!-- ==================== PORTUGUESE (BRAZIL) ==================== -->
+  <div class="section pt-BR">
+    <p class="date">Última atualização: 23 de março de 2026</p>
+
+    <div class="highlight">
+      <p>O Frame Cutter não coleta, armazena ou transmite nenhum dado pessoal. Todo o processamento acontece inteiramente no seu dispositivo.</p>
+    </div>
+
+    <h2>1. Visão geral</h2>
+    <p>Frame Cutter ("o App") é uma ferramenta de extração de quadros de vídeo desenvolvida para iOS. Esta Política de Privacidade explica como o App lida com suas informações. Estamos comprometidos com a proteção da sua privacidade.</p>
+
+    <h2>2. Coleta de dados</h2>
+    <p><strong>Não coletamos nenhum dado.</strong> O App funciona completamente offline e não se comunica com nenhum servidor externo.</p>
+
+    <div class="card">
+      <table>
+        <tr><th>Tipo de dado</th><th>Coletado?</th><th>Detalhes</th></tr>
+        <tr><td>Informações pessoais</td><td>Não</td><td>Nenhum nome, e-mail ou identificador é coletado</td></tr>
+        <tr><td>Análise de uso</td><td>Não</td><td>Sem rastreamento, análise ou telemetria</td></tr>
+        <tr><td>Dados de localização</td><td>Não</td><td>Sem acesso a GPS ou localização</td></tr>
+        <tr><td>Dados publicitários</td><td>Não</td><td>Sem anúncios, sem rastreamento publicitário</td></tr>
+        <tr><td>Informações do dispositivo</td><td>Não</td><td>Sem IDs de dispositivo ou impressão digital</td></tr>
+        <tr><td>Atividade de rede</td><td>Não</td><td>Nenhuma solicitação de Internet é feita</td></tr>
+      </table>
+    </div>
+
+    <h2>3. Permissões do dispositivo</h2>
+    <p>O App solicita as seguintes permissões apenas para sua funcionalidade principal:</p>
+
+    <h3>Câmera</h3>
+    <p>Usada exclusivamente para gravar vídeos dentro do App. Os dados do vídeo nunca saem do seu dispositivo. Esta permissão é opcional — você pode usar o App importando vídeos existentes.</p>
+
+    <h3>Biblioteca de Fotos</h3>
+    <p>Usada para importar vídeos do seu Rolo da Câmera e salvar imagens de quadros extraídos. O App acessa apenas os itens que você seleciona explicitamente.</p>
+
+    <h2>4. Armazenamento de dados</h2>
+    <p>Todos os dados criados pelo App são armazenados localmente no seu dispositivo:</p>
+    <ul>
+      <li><strong>Quadros extraídos</strong> — Salvos como arquivos JPEG no diretório Documents do App</li>
+      <li><strong>Metadados de sessão</strong> — Armazenados como arquivo JSON no diretório Documents do App</li>
+      <li><strong>Miniaturas</strong> — Geradas e armazenadas localmente para fins de exibição</li>
+    </ul>
+    <p>Você pode acessar esses arquivos através do app Arquivos do iOS ou do Compartilhamento de Arquivos do iTunes. Excluir o App removerá todos os dados armazenados.</p>
+
+    <h2>5. Serviços de terceiros</h2>
+    <p>O App não utiliza nenhum serviço de terceiros, SDKs, ferramentas de análise ou frameworks publicitários. Não há dependências de terceiros que coletam dados.</p>
+
+    <h2>6. Privacidade infantil</h2>
+    <p>O App não coleta nenhuma informação pessoal de ninguém, incluindo crianças menores de 13 anos. O App é seguro para usuários de todas as idades.</p>
+
+    <h2>7. Compartilhamento de dados</h2>
+    <p>Não compartilhamos dados com terceiros porque não coletamos nenhum dado. Quando você usa a folha de compartilhamento do iOS para compartilhar quadros, o compartilhamento é tratado inteiramente pelo iOS e pelo app de destino que você escolher.</p>
+
+    <h2>8. Segurança</h2>
+    <p>Como todos os dados permanecem no seu dispositivo e nenhuma comunicação de rede ocorre, seus dados são protegidos pelos recursos de segurança integrados do seu dispositivo (código de acesso, Face ID, Touch ID, criptografia).</p>
+
+    <h2>9. Alterações nesta política</h2>
+    <p>Podemos atualizar esta Política de Privacidade de tempos em tempos. Quaisquer alterações serão publicadas nesta página com uma data de revisão atualizada. O uso continuado do App após as alterações constitui aceitação da política atualizada.</p>
+
+    <h2>10. Contato</h2>
+    <div class="contact-box">
+      <p>Se você tiver alguma dúvida sobre esta Política de Privacidade, entre em contato conosco em:</p>
+      <p style="margin-top: 12px;"><a href="mailto:privacy@framecutter.app">privacy@framecutter.app</a></p>
+    </div>
+  </div>
+
+  <!-- ==================== HINDI ==================== -->
+  <div class="section hi">
+    <p class="date">अंतिम अपडेट: 23 मार्च 2026</p>
+
+    <div class="highlight">
+      <p>Frame Cutter कोई भी व्यक्तिगत डेटा एकत्र, संग्रहीत या प्रसारित नहीं करता है। सभी प्रोसेसिंग पूरी तरह से आपके डिवाइस पर होती है।</p>
+    </div>
+
+    <h2>1. अवलोकन</h2>
+    <p>Frame Cutter ("ऐप") iOS के लिए विकसित एक वीडियो फ़्रेम निष्कर्षण उपकरण है। यह गोपनीयता नीति बताती है कि ऐप आपकी जानकारी को कैसे संभालता है। हम आपकी गोपनीयता की सुरक्षा के लिए प्रतिबद्ध हैं।</p>
+
+    <h2>2. डेटा संग्रह</h2>
+    <p><strong>हम कोई डेटा एकत्र नहीं करते हैं।</strong> ऐप पूरी तरह से ऑफ़लाइन काम करता है और किसी भी बाहरी सर्वर से संवाद नहीं करता है।</p>
+
+    <div class="card">
+      <table>
+        <tr><th>डेटा प्रकार</th><th>एकत्र?</th><th>विवरण</th></tr>
+        <tr><td>व्यक्तिगत जानकारी</td><td>नहीं</td><td>कोई नाम, ईमेल या पहचानकर्ता एकत्र नहीं किए जाते</td></tr>
+        <tr><td>उपयोग विश्लेषण</td><td>नहीं</td><td>कोई ट्रैकिंग, विश्लेषण या टेलीमेट्री नहीं</td></tr>
+        <tr><td>स्थान डेटा</td><td>नहीं</td><td>कोई GPS या स्थान एक्सेस नहीं</td></tr>
+        <tr><td>विज्ञापन डेटा</td><td>नहीं</td><td>कोई विज्ञापन नहीं, कोई विज्ञापन ट्रैकिंग नहीं</td></tr>
+        <tr><td>डिवाइस जानकारी</td><td>नहीं</td><td>कोई डिवाइस ID या फ़िंगरप्रिंटिंग नहीं</td></tr>
+        <tr><td>नेटवर्क गतिविधि</td><td>नहीं</td><td>कोई इंटरनेट अनुरोध नहीं किए जाते</td></tr>
+      </table>
+    </div>
+
+    <h2>3. डिवाइस अनुमतियाँ</h2>
+    <p>ऐप केवल अपनी मूल कार्यक्षमता के लिए निम्नलिखित अनुमतियाँ मांगता है:</p>
+
+    <h3>कैमरा</h3>
+    <p>ऐप के भीतर वीडियो रिकॉर्ड करने के लिए विशेष रूप से उपयोग किया जाता है। वीडियो डेटा कभी भी आपके डिवाइस से बाहर नहीं जाता। यह अनुमति वैकल्पिक है — आप मौजूदा वीडियो आयात करके ऐप का उपयोग कर सकते हैं।</p>
+
+    <h3>फ़ोटो लाइब्रेरी</h3>
+    <p>आपके कैमरा रोल से वीडियो आयात करने और निकाले गए फ़्रेम चित्र सहेजने के लिए उपयोग किया जाता है। ऐप केवल उन आइटम्स तक पहुँचता है जिन्हें आप स्पष्ट रूप से चुनते हैं।</p>
+
+    <h2>4. डेटा संग्रहण</h2>
+    <p>ऐप द्वारा बनाया गया सभी डेटा आपके डिवाइस पर स्थानीय रूप से संग्रहीत किया जाता है:</p>
+    <ul>
+      <li><strong>निकाले गए फ़्रेम</strong> — ऐप की Documents डायरेक्टरी में JPEG फ़ाइलों के रूप में सहेजे गए</li>
+      <li><strong>सत्र मेटाडेटा</strong> — ऐप की Documents डायरेक्टरी में JSON फ़ाइल के रूप में संग्रहीत</li>
+      <li><strong>थंबनेल</strong> — प्रदर्शन उद्देश्यों के लिए स्थानीय रूप से उत्पन्न और संग्रहीत</li>
+    </ul>
+    <p>आप इन फ़ाइलों को iOS Files ऐप या iTunes File Sharing के माध्यम से एक्सेस कर सकते हैं। ऐप को हटाने से सभी संग्रहीत डेटा हट जाएगा।</p>
+
+    <h2>5. तृतीय-पक्ष सेवाएँ</h2>
+    <p>ऐप किसी भी तृतीय-पक्ष सेवाओं, SDK, विश्लेषण उपकरणों या विज्ञापन फ़्रेमवर्क का उपयोग नहीं करता है। डेटा एकत्र करने वाली कोई तृतीय-पक्ष निर्भरता नहीं है।</p>
+
+    <h2>6. बच्चों की गोपनीयता</h2>
+    <p>ऐप 13 वर्ष से कम आयु के बच्चों सहित किसी से भी कोई व्यक्तिगत जानकारी एकत्र नहीं करता है। ऐप सभी आयु के उपयोगकर्ताओं के लिए सुरक्षित है।</p>
+
+    <h2>7. डेटा साझाकरण</h2>
+    <p>हम तृतीय पक्षों के साथ कोई डेटा साझा नहीं करते क्योंकि हम कोई डेटा एकत्र नहीं करते। जब आप फ़्रेम साझा करने के लिए iOS शेयर शीट का उपयोग करते हैं, तो साझाकरण पूरी तरह से iOS और आपके द्वारा चुने गए गंतव्य ऐप द्वारा संभाला जाता है।</p>
+
+    <h2>8. सुरक्षा</h2>
+    <p>चूँकि सभी डेटा आपके डिवाइस पर रहता है और कोई नेटवर्क संचार नहीं होता, आपका डेटा आपके डिवाइस की अंतर्निहित सुरक्षा सुविधाओं (पासकोड, Face ID, Touch ID, एन्क्रिप्शन) द्वारा सुरक्षित है।</p>
+
+    <h2>9. इस नीति में परिवर्तन</h2>
+    <p>हम समय-समय पर इस गोपनीयता नीति को अपडेट कर सकते हैं। कोई भी परिवर्तन अपडेट किए गए संशोधन तिथि के साथ इस पृष्ठ पर पोस्ट किया जाएगा। परिवर्तनों के बाद ऐप का निरंतर उपयोग अपडेट की गई नीति की स्वीकृति मानी जाएगी।</p>
+
+    <h2>10. संपर्क</h2>
+    <div class="contact-box">
+      <p>यदि इस गोपनीयता नीति के बारे में आपके कोई प्रश्न हैं, तो कृपया हमसे संपर्क करें:</p>
+      <p style="margin-top: 12px;"><a href="mailto:privacy@framecutter.app">privacy@framecutter.app</a></p>
+    </div>
+  </div>
+
+  <!-- ==================== ARABIC ==================== -->
+  <div class="section ar" dir="rtl">
+    <p class="date">آخر تحديث: 23 مارس 2026</p>
+
+    <div class="highlight">
+      <p>لا يقوم Frame Cutter بجمع أو تخزين أو نقل أي بيانات شخصية. تتم جميع المعالجة بالكامل على جهازك.</p>
+    </div>
+
+    <h2>1. نظرة عامة</h2>
+    <p>Frame Cutter ("التطبيق") هو أداة لاستخراج إطارات الفيديو مطورة لنظام iOS. توضح سياسة الخصوصية هذه كيفية تعامل التطبيق مع معلوماتك. نحن ملتزمون بحماية خصوصيتك.</p>
+
+    <h2>2. جمع البيانات</h2>
+    <p><strong>لا نجمع أي بيانات.</strong> يعمل التطبيق بالكامل دون اتصال بالإنترنت ولا يتواصل مع أي خوادم خارجية.</p>
+
+    <div class="card">
+      <table>
+        <tr><th>نوع البيانات</th><th>هل تُجمع؟</th><th>التفاصيل</th></tr>
+        <tr><td>المعلومات الشخصية</td><td>لا</td><td>لا تُجمع أسماء أو بريد إلكتروني أو معرّفات</td></tr>
+        <tr><td>تحليلات الاستخدام</td><td>لا</td><td>لا تتبع أو تحليلات أو قياس عن بعد</td></tr>
+        <tr><td>بيانات الموقع</td><td>لا</td><td>لا وصول إلى GPS أو الموقع</td></tr>
+        <tr><td>بيانات الإعلانات</td><td>لا</td><td>لا إعلانات، لا تتبع إعلاني</td></tr>
+        <tr><td>معلومات الجهاز</td><td>لا</td><td>لا معرّفات جهاز أو بصمة رقمية</td></tr>
+        <tr><td>نشاط الشبكة</td><td>لا</td><td>لا تُجرى طلبات إنترنت</td></tr>
+      </table>
+    </div>
+
+    <h2>3. أذونات الجهاز</h2>
+    <p>يطلب التطبيق الأذونات التالية فقط لوظائفه الأساسية:</p>
+
+    <h3>الكاميرا</h3>
+    <p>تُستخدم حصرياً لتسجيل مقاطع الفيديو داخل التطبيق. لا تغادر بيانات الفيديو جهازك أبداً. هذا الإذن اختياري — يمكنك استخدام التطبيق عن طريق استيراد مقاطع فيديو موجودة.</p>
+
+    <h3>مكتبة الصور</h3>
+    <p>تُستخدم لاستيراد مقاطع الفيديو من ألبوم الكاميرا وحفظ صور الإطارات المستخرجة. يصل التطبيق فقط إلى العناصر التي تختارها صراحةً.</p>
+
+    <h2>4. تخزين البيانات</h2>
+    <p>جميع البيانات التي ينشئها التطبيق تُخزّن محلياً على جهازك:</p>
+    <ul>
+      <li><strong>الإطارات المستخرجة</strong> — تُحفظ كملفات JPEG في مجلد Documents الخاص بالتطبيق</li>
+      <li><strong>بيانات الجلسة الوصفية</strong> — تُخزّن كملف JSON في مجلد Documents الخاص بالتطبيق</li>
+      <li><strong>الصور المصغرة</strong> — تُنشأ وتُخزّن محلياً لأغراض العرض</li>
+    </ul>
+    <p>يمكنك الوصول إلى هذه الملفات من خلال تطبيق الملفات في iOS أو مشاركة ملفات iTunes. سيؤدي حذف التطبيق إلى إزالة جميع البيانات المخزّنة.</p>
+
+    <h2>5. خدمات الطرف الثالث</h2>
+    <p>لا يستخدم التطبيق أي خدمات طرف ثالث أو حزم SDK أو أدوات تحليل أو أطر عمل إعلانية. لا توجد تبعيات طرف ثالث تجمع البيانات.</p>
+
+    <h2>6. خصوصية الأطفال</h2>
+    <p>لا يجمع التطبيق أي معلومات شخصية من أي شخص، بما في ذلك الأطفال دون سن 13 عاماً. التطبيق آمن للمستخدمين من جميع الأعمار.</p>
+
+    <h2>7. مشاركة البيانات</h2>
+    <p>لا نشارك أي بيانات مع أطراف ثالثة لأننا لا نجمع أي بيانات. عند استخدام ورقة المشاركة في iOS لمشاركة الإطارات، تتم المشاركة بالكامل بواسطة iOS والتطبيق الوجهة الذي تختاره.</p>
+
+    <h2>8. الأمان</h2>
+    <p>نظراً لأن جميع البيانات تبقى على جهازك ولا يحدث أي اتصال بالشبكة، فإن بياناتك محمية بميزات الأمان المدمجة في جهازك (رمز المرور، Face ID، Touch ID، التشفير).</p>
+
+    <h2>9. التغييرات على هذه السياسة</h2>
+    <p>قد نقوم بتحديث سياسة الخصوصية هذه من وقت لآخر. سيتم نشر أي تغييرات على هذه الصفحة بتاريخ مراجعة محدّث. يُعتبر الاستمرار في استخدام التطبيق بعد التغييرات قبولاً للسياسة المحدّثة.</p>
+
+    <h2>10. الاتصال</h2>
+    <div class="contact-box">
+      <p>إذا كان لديك أي أسئلة حول سياسة الخصوصية هذه، يرجى التواصل معنا على:</p>
+      <p style="margin-top: 12px;"><a href="mailto:privacy@framecutter.app">privacy@framecutter.app</a></p>
+    </div>
+  </div>
+
+  <div class="footer">
+    &copy; 2026 Frame Cutter. All rights reserved.
+  </div>
+</div>
+
+</body>
+</html>
